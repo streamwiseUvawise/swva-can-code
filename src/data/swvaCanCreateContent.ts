@@ -1,153 +1,153 @@
 // Editable content for the SWVA Can Create page.
 export const swvaCanCreateContent = {
   hero: {
-    badge: 'Year-Round Creative Tech Programs',
-    title: 'SWVA Can Create',
+    badge: 'Beginner-Friendly Summer Experience',
+    title: 'SWVA CAN CREATE!',
     subtitle:
-      "Beyond camps, explore ongoing opportunities to express your creativity through technology. From game jams to art+tech workshops, there's always something new to create!"
+      'Unlock your creativity! Designed for elementary and middle school students who love to imagine and create. No prior experience needed — just bring your imagination.'
   },
   intro: {
     title: 'What is SWVA Can Create?',
     text:
-      'SWVA Can Create is our year-round initiative bringing together students who love technology and creativity. Whether you are into game design, digital art, music production, or inventing new things, this is your space to explore, experiment, and collaborate with other young creators.'
+      'SWVA Can Create is designed for students who enjoy drawing, storytelling, and experimenting with apps. Whether you have never written a line of code or you are already tech-savvy, this workshop helps you turn creative ideas into interactive prototypes and build confidence sharing them.'
   },
   programs: {
-    title: 'Our Programs',
-    description: 'Hands-on creative experiences that blend art, technology, and innovation.',
+    title: 'What Students Will Do & Learn',
+    description: 'Hands-on activities that guide students from idea to interactive prototype and presentation.',
     items: [
       {
-        title: 'Game Jams',
+        title: 'Brainstorm App Ideas',
         text:
-          '24-48 hour events where teams design, develop, and showcase original video games around a creative theme.',
-        metaLabel: 'Next Event:',
-        metaValue: 'Spring 2026',
+          'Identify a real community or economic need, or imagine a game or story concept, then shape it into a clear app idea with mentor support.',
+        metaLabel: 'Focus:',
+        metaValue: 'Problem-solving + imagination',
         accent: '#E53935'
       },
       {
-        title: 'Student Hackathons',
+        title: 'Design in Keynote on iPad',
         text:
-          'Build apps, websites, and tools to solve real community problems. Compete for prizes and connect with mentors.',
-        metaLabel: 'Next Event:',
-        metaValue: 'Fall 2026',
+          'Create app screens, buttons, and user flows using Apple Keynote — like storyboarding a real app experience.',
+        metaLabel: 'Tool:',
+        metaValue: 'Apple Keynote',
         accent: '#00BCD4'
       },
       {
-        title: 'Art + Tech Workshops',
+        title: 'Build Interactive Prototypes',
         text:
-          'Explore digital art, animation, music production, 3D modeling, and other creative technologies with hands-on guidance.',
-        metaLabel: 'Frequency:',
-        metaValue: 'Monthly',
+          'Link slides to make a clickable prototype so users can tap through the app as if it were real.',
+        metaLabel: 'Outcome:',
+        metaValue: 'Working click-through demo',
         accent: '#E53935'
       },
       {
-        title: 'Creative Coding Club',
+        title: 'Show & Tell Presentations',
         text:
-          'Weekly meetups for students to work on personal projects, learn new skills, and share their creations with peers.',
-        metaLabel: 'Meets:',
-        metaValue: 'Every Wednesday',
+          'Practice presenting your prototype to peers and mentors, just like a real app pitch.',
+        metaLabel: 'Skill Build:',
+        metaValue: 'Communication + confidence',
         accent: '#00BCD4'
       },
       {
-        title: 'Tech Showcase Night',
+        title: '3D Modeling & Making',
         text:
-          'Quarterly events where students present their projects to families, educators, and community members.',
-        metaLabel: 'Next Event:',
-        metaValue: 'March 15, 2026',
+          'Use 3D modeling apps like Autodesk TinkerCAD to design real-world artifacts connected to your ideas.',
+        metaLabel: 'Tool:',
+        metaValue: 'Autodesk TinkerCAD',
         accent: '#E53935'
       },
       {
-        title: 'Special Interest Groups',
+        title: 'Prep for SWVA Can Code',
         text:
-          'Join focused groups exploring robotics, VR/AR, web development, mobile apps, and more specialized topics.',
-        metaLabel: 'Various times',
-        metaValue: '',
+          'Leave camp with a planned app concept and stronger teamwork skills so you are ready for the next level in Swift and app development.',
+        metaLabel: 'Next Step:',
+        metaValue: 'Join SWVA Can Code',
         accent: '#00BCD4'
       }
     ]
   },
   steps: {
-    title: 'How to Get Involved',
+    title: "Why It's Awesome",
     items: [
       {
-        title: 'Check the Calendar',
+        title: 'Creative Fun',
         text:
-          'Browse upcoming events and programs on our calendar below. Programs are open to students of all skill levels, beginners always welcome!',
+          'Build something from your own imagination — like creating a comic or story, but as an interactive app prototype.',
         accent: '#00BCD4'
       },
       {
-        title: 'Sign Up',
+        title: 'Confidence & Teamwork',
         text:
-          'Register for events through our contact form or email us directly. Most programs are free or low-cost, with scholarships available.',
+          'Work with friends and mentors, share ideas, and gain confidence presenting your work to others.',
         accent: '#E53935'
       },
       {
-        title: 'Create & Share',
+        title: 'Head Start for Coding',
         text:
-          'Attend events, work on projects, and share your creations with the community. Your work may be featured in our showcase!',
+          'SWVA Can Create helps students plan and prototype first, making future coding camps easier and more meaningful.',
         accent: '#00BCD4'
       }
     ],
-    buttonLabel: 'Get Started Today',
-    buttonTo: '/contact'
+    buttonLabel: 'Find a Camp Near You',
+    buttonTo: '/find-camp'
   },
   events: {
-    title: 'Upcoming Events',
+    title: 'Camp Details',
     items: [
       {
-        title: 'Creative Coding Club Meetup',
-        date: 'February 19, 2026',
-        time: '4:00 PM - 6:00 PM',
-        location: 'Abingdon Library',
+        title: 'Summer Camp Schedule',
+        date: '1-week summer camp',
+        time: '6 hours each day',
+        location: 'Multiple SWVA locations',
         color: '#00BCD4',
-        type: 'Weekly'
+        type: 'Duration'
       },
       {
-        title: 'Digital Art Workshop',
-        date: 'February 25, 2026',
-        time: '10:00 AM - 2:00 PM',
-        location: 'Bristol Community Center',
+        title: 'Primary Campus Option',
+        date: "University of Virginia's College at Wise",
+        time: 'Hosted with local partners',
+        location: 'Wise, VA + regional camps',
         color: '#E53935',
-        type: 'Workshop'
+        type: 'Location'
       },
       {
-        title: 'Tech Showcase Night',
-        date: 'March 15, 2026',
-        time: '6:00 PM - 8:00 PM',
-        location: 'Blacksburg High School',
+        title: 'Cost & Registration',
+        date: 'Free to participants',
+        time: 'Sponsored program',
+        location: 'Register via Find a Camp section',
         color: '#00BCD4',
-        type: 'Showcase'
+        type: 'Access'
       },
       {
-        title: 'Spring Game Jam',
-        date: 'April 12-13, 2026',
-        time: '24-hour event',
-        location: 'Virginia Tech',
+        title: 'Who Should Join',
+        date: 'Elementary + middle school students',
+        time: 'Beginners welcome',
+        location: 'No prior coding required',
         color: '#E53935',
-        type: 'Competition'
+        type: 'Audience'
       },
       {
-        title: '3D Modeling Workshop',
-        date: 'April 20, 2026',
-        time: '1:00 PM - 4:00 PM',
-        location: 'Wytheville Library',
+        title: 'Creative Focus Areas',
+        date: 'Drawing, storytelling, app ideas',
+        time: 'Prototype design + pitching',
+        location: 'Includes 3D modeling experiences',
         color: '#00BCD4',
-        type: 'Workshop'
+        type: 'Learning'
       },
       {
-        title: 'Mobile App Dev Bootcamp',
-        date: 'May 5-6, 2026',
-        time: 'Weekend intensive',
-        location: 'Abingdon',
+        title: 'What to Bring',
+        date: 'Your ideas and curiosity',
+        time: 'Positive team mindset',
+        location: 'We help with the rest',
         color: '#E53935',
-        type: 'Bootcamp'
+        type: 'Ready'
       }
     ]
   },
   cta: {
-    title: 'Have an Idea for a Program?',
+    title: "Have a cool idea? Let's design together!",
     description:
-      "We love hearing from students! If you have an idea for a workshop, club, or event you'd like to see, let us know.",
-    buttonLabel: 'Share Your Idea',
-    buttonTo: '/contact'
+      'Join SWVA Can Create to imagine, design, and present your app prototype with support from mentors and friends.',
+    buttonLabel: 'Join SWVA Can Create',
+    buttonTo: '/find-camp'
   }
 };

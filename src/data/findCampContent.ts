@@ -320,7 +320,8 @@ export const findCampContent = {
       contacts: [
         { label: 'Superintendent', value: 'mike.goforth@wisek12.org' },
         { label: 'KIL', value: 'mshortt@wisek12.org' },
-        { label: 'Tech Director', value: 'scott.kiser@wisek12.org' }
+        { label: 'Tech Director', value: 'scott.kiser@wisek12.org' },
+        { label: 'Camp Lead', value: 'hvarner@wisek12.org' }
       ],
       color: '#E53935'
     },
@@ -391,7 +392,7 @@ export const findCampContent = {
       title: 'SWVA CAN CREATE @ UVAWISE Camp',
       date: 'June/July 2026 (dates TBD)',
       location: 'UVA Wise, VA',
-      ageRange: '10-18',
+      ageRange: '8-14',
       duration: campDuration,
       description:
         'Camps follow the SWVA Can Code curriculum with hands-on web app design, problem-solving, and collaboration.',
@@ -404,7 +405,7 @@ export const findCampContent = {
   expectations: {
     title: 'What to Expect',
     items: [
-      'Small class sizes (max 15 students per instructor)',
+      'Small class sizes for personalized learning',
       'All materials and computers provided',
       'Experienced instructors passionate about teaching',
       'Hands-on projects students take home',
@@ -416,8 +417,8 @@ export const findCampContent = {
     description:
       "We're here to help! Contact us if you have questions about registration, scholarships, accommodations, or anything else.",
     emailLabel: 'Email Us',
-    emailHref: 'mailto:camps@swvacancode.org',
-    phoneLabel: 'Call (555) 123-4567',
-    phoneHref: 'tel:+15551234567'
+    emailHref: 'mailto:hlb6t@uvawise.edu',
+    phoneLabel: 'Call (276) 376-5445',
+    phoneHref: 'tel:+12763765445'
   }
 };

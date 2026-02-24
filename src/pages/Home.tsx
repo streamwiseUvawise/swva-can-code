@@ -3,6 +3,8 @@ import { Code, Users, Lightbulb, Award, ArrowRight, Calendar, MapPin } from 'luc
 import bannerImage from '../assets/logo1.png';
 import swiftLogo from '../assets/swift.svg';
 import { homeContent } from '../data/homeContent';
+import { findCampContent } from '../data/findCampContent';
+import { showcaseContent } from '../data/showcaseContent';
 
 export function Home() {
   const offerIconMap = {
@@ -12,7 +14,14 @@ export function Home() {
     users: Users
   } as const;
 
-  const galleryPreview = homeContent.showcasePreview.images;
+  const previewCamps = findCampContent.camps.slice(0, 3).map((camp) => ({
+    title: camp.title,
+    date: camp.date,
+    location: camp.location,
+    ages: `Ages ${camp.ageRange}`,
+    color: camp.color
+  }));
+  const galleryPreview = showcaseContent.gallery.images.slice(0, 4);
 
   return (
     <div>
@@ -225,7 +234,7 @@ export function Home() {
           {/* Camp cards grid */}
           {/* HOW TO EDIT: Change the text in the array below to update camp details */}
           <div className="grid md:grid-cols-3 gap-8">
-            {homeContent.upcomingCamps.map((camp, index) => (
+            {previewCamps.map((camp, index) => (
               // Don't edit this part - it displays each camp from the array above
               <div key={index} className="bg-[#F5F3EE] rounded-xl p-6 border-l-4 hover:shadow-lg transition-shadow" style={{ borderColor: camp.color }}>
                 <h3 className="text-[#1A237E] mb-4">{camp.title}</h3>

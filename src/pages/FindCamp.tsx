@@ -8,6 +8,25 @@ export function FindCamp() {
   const [locationFilter, setLocationFilter] = useState('all');
 
   const camps = findCampContent.camps;
+  const ageOptions = [...new Set(camps.map((camp) => camp.ageRange))].sort();
+  const locationOptions = [...new Set(camps.map((camp) => camp.location))].sort((a, b) =>
+    a.localeCompare(b)
+  );
+
+  const filteredCamps = camps.filter((camp) => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+    const searchMatches =
+      normalizedSearch.length === 0 ||
+      camp.title.toLowerCase().includes(normalizedSearch) ||
+      camp.location.toLowerCase().includes(normalizedSearch) ||
+      camp.description.toLowerCase().includes(normalizedSearch) ||
+      camp.date.toLowerCase().includes(normalizedSearch);
+
+    const ageMatches = ageFilter === 'all' || camp.ageRange === ageFilter;
+    const locationMatches = locationFilter === 'all' || camp.location === locationFilter;
+
+    return searchMatches && ageMatches && locationMatches;
+  });
 
   return (
     <div>
@@ -44,9 +63,11 @@ export function FindCamp() {
               className="px-4 py-2 border border-[#1A237E]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00BCD4] text-[#1A237E]"
             >
               <option value="all">All Ages</option>
-              <option value="8-10">Ages 8-10</option>
-              <option value="11-13">Ages 11-13</option>
-              <option value="14-17">Ages 14-17</option>
+              {ageOptions.map((age) => (
+                <option key={age} value={age}>
+                  Ages {age}
+                </option>
+              ))}
             </select>
 
             {/* Location Filter */}
@@ -56,9 +77,11 @@ export function FindCamp() {
               className="px-4 py-2 border border-[#1A237E]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00BCD4] text-[#1A237E]"
             >
               <option value="all">All Locations</option>
-              <option value="abingdon">Abingdon, VA</option>
-              <option value="bristol">Bristol, VA</option>
-              <option value="blacksburg">Blacksburg, VA</option>
+              {locationOptions.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
             </select>
 
             {/* Clear Filters */}
@@ -82,10 +105,13 @@ export function FindCamp() {
           <div className="mb-8">
             <h2 className="text-[#1A237E] mb-2">{findCampContent.sectionHeader.title}</h2>
             <p className="text-[#1A237E]/70">{findCampContent.sectionHeader.description}</p>
+            <p className="text-[#1A237E]/60 mt-2">
+              Showing {filteredCamps.length} of {camps.length} camps
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {camps.map((camp) => (
+            {filteredCamps.map((camp) => (
               <div
                 key={camp.id}
                 className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden border-t-4"
@@ -156,6 +182,12 @@ export function FindCamp() {
               </div>
             ))}
           </div>
+
+          {filteredCamps.length === 0 && (
+            <div className="mt-8 text-center text-[#1A237E]/70">
+              No camps match your current filters.
+            </div>
+          )}
         </div>
       </section>
 

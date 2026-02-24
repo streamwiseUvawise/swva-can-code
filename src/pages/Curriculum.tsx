@@ -83,13 +83,28 @@ export function Curriculum() {
                     ))}
                   </ul>
                 </div>
-                <button 
-                  className="w-full flex items-center justify-center gap-2 py-2 rounded-lg font-medium text-white transition-colors hover:opacity-90"
-                  style={{ backgroundColor: module.color }}
-                >
-                  <Download className="w-4 h-4" />
-                  Download Module
-                </button>
+                {module.pdfPath ? (
+                  <a
+                    href={module.pdfPath}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 py-2 rounded-lg font-medium text-white transition-colors hover:opacity-90"
+                    style={{ backgroundColor: module.color }}
+                  >
+                    <Download className="w-4 h-4" />
+                    Download Module
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    disabled
+                    className="w-full flex items-center justify-center gap-2 py-2 rounded-lg font-medium text-white/90 opacity-70 cursor-not-allowed"
+                    style={{ backgroundColor: module.color }}
+                  >
+                    <Download className="w-4 h-4" />
+                    PDF Coming Soon
+                  </button>
+                )}
               </div>
             ))}
           </div>

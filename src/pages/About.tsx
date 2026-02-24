@@ -1,6 +1,15 @@
 import { Target, Heart, Lightbulb, Users } from 'lucide-react';
 import { aboutContent } from '../data/aboutContent';
 
+const aboutAssetModules = import.meta.glob('../assets/*.{png,jpg,jpeg,avif,webp}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>;
+
+const heatherHeadshot = Object.entries(aboutAssetModules).find(([path]) =>
+  /\/(heather|heahter)\./i.test(path)
+)?.[1];
+
 export function About() {
   return (
     <div>
@@ -82,6 +91,48 @@ export function About() {
                 <strong className="text-[#1A237E]">{paragraph.lead}</strong> {paragraph.text}
               </p>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Spotlight */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-[#1A237E] text-center mb-10">{aboutContent.leadershipSpotlight.title}</h2>
+
+          <div className="bg-[#F5F3EE] rounded-xl p-6 md:p-8 border border-[#1A237E]/10">
+            <div className="grid md:grid-cols-[220px,1fr] gap-8 items-start">
+              <div className="mx-auto md:mx-0 w-44 h-44 rounded-xl overflow-hidden bg-white shadow-md">
+                {heatherHeadshot ? (
+                  <img
+                    src={heatherHeadshot}
+                    alt="Heather Askea, SWVA Can Code project leadership"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-[#1A237E]/50">
+                    <Users className="w-14 h-14" />
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <h3 className="text-[#1A237E] mb-2">{aboutContent.leadershipSpotlight.name}</h3>
+                <p className="text-[#00BCD4] font-medium mb-4">{aboutContent.leadershipSpotlight.role}</p>
+                <p className="text-[#1A237E]/80 mb-4">{aboutContent.leadershipSpotlight.summary}</p>
+
+                <ul className="space-y-2 text-[#1A237E]/80 mb-5">
+                  {aboutContent.leadershipSpotlight.highlights.map((item, index) => (
+                    <li key={`${item}-${index}`} className="flex items-start gap-2">
+                      <span className="text-[#E53935] font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="text-[#1A237E]/70 italic">“{aboutContent.leadershipSpotlight.quote}”</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

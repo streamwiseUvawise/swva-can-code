@@ -1,104 +1,129 @@
+const excludedShowcaseAssetNames = new Set([
+  'banner.png',
+  'logo1.png',
+  'logo2.png',
+  'swift.svg'
+]);
+
+const showcaseAssetModules = import.meta.glob('../assets/*.{png,jpg,jpeg,avif,webp,gif}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>;
+
+const showcaseImageOverrides: Array<{
+  matcher: (fileName: string) => boolean;
+  alt: string;
+  fit?: 'cover' | 'contain';
+  priority?: number;
+}> = [
+  {
+    matcher: (fileName) => /^(heather|heahter)\./i.test(fileName),
+    alt: 'Heather Askea, Program Director for SWVA Can Code',
+    fit: 'contain',
+    priority: -1
+  }
+];
+
+function buildGalleryAltText(fileName: string) {
+  let label = fileName
+    .replace(/\.(avif|webp|png|jpe?g|gif)$/i, '')
+    .replace(/\.(png|jpe?g|webp|gif)$/i, '')
+    .replace(/-[A-Za-z0-9]{8,}$/, '')
+    .replace(/[_-]+/g, ' ')
+    .trim();
+
+  if (!label) {
+    label = 'student project';
+  }
+
+  return `SWVA showcase photo: ${label}`;
+}
+
+const showcaseGalleryImages = Object.entries(showcaseAssetModules)
+  .map(([path, src]) => {
+    const fileName = path.split('/').pop() ?? '';
+    return { fileName, src };
+  })
+  .filter(({ fileName }) => !excludedShowcaseAssetNames.has(fileName))
+  .filter(({ fileName }) => !/(^|\W)(heather|heahter)\./i.test(fileName))
+  .map(({ fileName, src }) => {
+    const override = showcaseImageOverrides.find((item) => item.matcher(fileName));
+    return {
+      src,
+      alt: override?.alt ?? buildGalleryAltText(fileName),
+      fit: override?.fit ?? 'cover',
+      priority: override?.priority ?? 0,
+      fileName
+    };
+  })
+  .sort((left, right) => {
+    if (left.priority !== right.priority) {
+      return left.priority - right.priority;
+    }
+    return left.fileName.localeCompare(right.fileName);
+  })
+  .map(({ src, alt, fit }) => ({ src, alt, fit }));
+
 // Editable content for the Showcase page.
 export const showcaseContent = {
   hero: {
     title: 'Student Showcase',
-    subtitle: 'Celebrate the amazing projects created by our students. These young coders are building the future!'
+    subtitle:
+      'Students from all over SWVA are rising to the challenge this summer to develop an app prototype that addresses a key economic or community need.'
+  },
+  eventDetails: {
+    dateAndVenue: 'July 2026 @ the David J. Prior Convocation Center',
+    campus: "on the Campus of The University of Virginia's College at Wise",
+    celebrationTitle: 'Celebrating Student Achievements!',
+    posterSessionText:
+      'The top three projects from each camp will be shared in poster-style sessions.',
+    pitchCompetitionText:
+      'The top projects from each camp will be invited to pitch their prototypes in a rapid-fire pitch competition for prizes and accolades!'
   },
   filterTags: ['All Projects', 'Games', 'Websites', 'Apps', 'Art & Animation'],
-  projects: [
-    {
-      id: 1,
-      title: 'Jungle Adventure Game',
-      student: 'Sarah M.',
-      age: 12,
-      description: 'A platformer game where you help a monkey collect bananas while avoiding obstacles.',
-      skills: ['Scratch', 'Game Design', 'Animation'],
-      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80'
-    },
-    {
-      id: 2,
-      title: 'Weather Dashboard',
-      student: 'Michael L.',
-      age: 15,
-      description: 'Interactive web app that displays current weather and 5-day forecast for any city.',
-      skills: ['HTML', 'CSS', 'JavaScript', 'API'],
-      image: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80'
-    },
-    {
-      id: 3,
-      title: 'Drawing Canvas App',
-      student: 'Emma R.',
-      age: 10,
-      description: 'Digital art tool with color picker, brush sizes, and save functionality.',
-      skills: ['JavaScript', 'HTML Canvas', 'UI Design'],
-      image: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=800&q=80'
-    },
-    {
-      id: 4,
-      title: 'Quiz Master',
-      student: 'Jason T.',
-      age: 13,
-      description: 'Multiple choice quiz game with score tracking and different difficulty levels.',
-      skills: ['Python', 'Logic', 'Data Structures'],
-      image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&q=80'
-    },
-    {
-      id: 5,
-      title: 'Virtual Pet Simulator',
-      student: 'Lily K.',
-      age: 11,
-      description: 'Take care of a virtual pet by feeding, playing, and keeping it happy!',
-      skills: ['Scratch', 'Variables', 'User Input'],
-      image: 'https://images.unsplash.com/photo-1415369629372-26f2fe60c467?w=800&q=80'
-    },
-    {
-      id: 6,
-      title: 'Personal Portfolio Website',
-      student: 'David P.',
-      age: 16,
-      description: 'Responsive portfolio showcasing projects, skills, and contact information.',
-      skills: ['HTML', 'CSS', 'Responsive Design'],
-      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80'
-    }
-  ],
+  // TODO (after next camp): Replace demo entries below with real student projects.
+  // Keep each object shape the same so the existing Showcase grid design continues to work.
+  // Example template:
+  // {
+  //   id: 101,
+  //   title: 'Project Title',
+  //   student: 'Student Name',
+  //   age: 14,
+  //   description: '1-2 sentence summary of the project and problem solved.',
+  //   skills: ['Skill 1', 'Skill 2', 'Skill 3'],
+  //   image: 'https://...',
+  //   projectUrl: 'https://...' // optional (leave blank if no link yet)
+  // }
+  projects: [] as Array<{
+    id: number;
+    title: string;
+    student: string;
+    age: number;
+    description: string;
+    skills: string[];
+    image: string;
+    projectUrl?: string;
+  }>,
+  projectsEmptyMessage: 'Student project highlights will be posted here after camp judging is complete.',
   gallery: {
     title: 'Student Showcase Gallery',
+    // TODO (after next camp): Curate final event photos here.
+    // Suggested sequence from the previous showcase format:
+    // 1) Poster-style sessions (top three projects from each camp)
+    // 2) Rapid-fire pitch competition highlights
+    // 3) Awards and celebration moments
     description: 'Photos from camps, showcases, and project demos are curated by the SWVA Can Code team.',
-    images: [
-      {
-        src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80',
-        alt: 'Students collaborating on laptops during camp'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=1200&q=80',
-        alt: 'Coding workshop with mentors and students'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80',
-        alt: 'Student presenting a project at showcase'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80',
-        alt: 'Close-up of hands typing code'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80',
-        alt: 'Group brainstorming with sticky notes'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80',
-        alt: 'Camp session with students raising hands'
-      }
-    ]
+    images: showcaseGalleryImages
   },
   submitCta: {
     title: 'Built Something Amazing?',
     description: "Share your project with the community! We'd love to feature your work in our showcase.",
-    buttonLabel: 'Submit Your Project'
+    buttonLabel: 'Submit Your Project',
+    buttonTo: '/contact'
   },
   stats: [
-    { value: '200+', label: 'Projects Created', colorClass: 'text-[#00BCD4]' },
-    { value: '15+', label: 'Programming Languages', colorClass: 'text-[#E53935]' },
+    { value: '50+', label: 'Projects Created', colorClass: 'text-[#00BCD4]' },
+    { value: '15+', label: 'Camps Run', colorClass: 'text-[#E53935]' },
     { value: '30+', label: 'Awards Won', colorClass: 'text-[#00BCD4]' }
   ]
 };

@@ -56,6 +56,21 @@ export const aboutContent = {
       }
     ]
   },
+  leadershipSpotlight: {
+    title: 'Project Leadership Spotlight',
+    name: 'Heather Askea',
+    role:
+      "Instructor, trainer, and Instructional Technology Coordinator at the University of Virginia's College at Wise Center for Teaching Excellence",
+    summary:
+      'Heather helps lead SWVA Can Code through strong regional collaboration across K-12 schools, higher education, libraries, and industry partners to expand equitable access to coding and creative technology learning.',
+    highlights: [
+      'UVA Wise alumna with a Bachelor of Arts in English and a Master of Education in Administration and Supervision from UVA.',
+      'Former Wise County Schools classroom teacher, instructional technology resource teacher, and math coach; long-time adjunct faculty member and presenter with UVA Wise.',
+      'Recognized as VSTE Leader of the Year (2024) for outstanding leadership in using technology to improve education.'
+    ],
+    quote:
+      'In Southwest Virginia, we have a wonderful culture of collaboration among K-12, higher education and industry partners to accomplish amazing projects that open opportunities for our students.'
+  },
   community: {
     title: 'Our Community',
     description:

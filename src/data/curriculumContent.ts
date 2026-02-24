@@ -18,6 +18,8 @@ export const curriculumContent = {
       duration: '45 min',
       level: 'Beginner',
       includes: ['Lesson plan', 'Student handout', 'Activity guide'],
+      // Place your PDF in /public/curriculum and set this path, e.g. '/curriculum/variables.pdf'
+      pdfPath: '/curriculum/Module1_Variables.pdf',
       color: '#00BCD4'
     },
     {
@@ -26,6 +28,7 @@ export const curriculumContent = {
       duration: '60 min',
       level: 'Beginner',
       includes: ['Lesson plan', 'Coding challenges', 'Answer key'],
+      pdfPath: '/curriculum/Module2_Loops.pdf',
       color: '#E53935'
     },
     {
@@ -34,6 +37,7 @@ export const curriculumContent = {
       duration: '90 min',
       level: 'Intermediate',
       includes: ['Project guide', 'Code templates', 'Extension activities'],
+      pdfPath: '/curriculum/Module3_Game.pdf',
       color: '#00BCD4'
     },
     {
@@ -42,6 +46,7 @@ export const curriculumContent = {
       duration: '60 min',
       level: 'Beginner',
       includes: ['HTML/CSS tutorial', 'Practice exercises', 'Project examples'],
+      pdfPath: '/curriculum/Module4_Web.pdf',
       color: '#E53935'
     },
     {
@@ -50,6 +55,7 @@ export const curriculumContent = {
       duration: '75 min',
       level: 'Advanced',
       includes: ['Lecture slides', 'Coding problems', 'Assessment'],
+      pdfPath: '/curriculum/Module5_Algorithms.pdf',
       color: '#00BCD4'
     },
     {
@@ -58,6 +64,7 @@ export const curriculumContent = {
       duration: '90 min',
       level: 'Intermediate',
       includes: ['Art project guide', 'Code library', 'Gallery examples'],
+      pdfPath: '/curriculum/Module6_Creative.pdf',
       color: '#E53935'
     }
   ],

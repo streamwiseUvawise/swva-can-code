@@ -28,7 +28,7 @@ Most page copy, lists, and cards are now stored in data files so you can edit co
 - SWVA Can Create page: `/src/data/swvaCanCreateContent.ts`
 
 ### Navigation Menu (Top of Every Page)
-**File:** `/components/Navbar.tsx`
+**File:** `/src/components/Navbar.tsx`
 
 **What you can edit:**
 - Menu item names and links (look for the `navItems` array)
@@ -36,7 +36,7 @@ Most page copy, lists, and cards are now stored in data files so you can edit co
 - Add or remove menu items
 
 ### Footer (Bottom of Every Page)
-**File:** `/components/Footer.tsx`
+**File:** `/src/components/Footer.tsx`
 
 **What you can edit:**
 - Email address, phone number, location
@@ -59,6 +59,61 @@ Most page copy, lists, and cards are now stored in data files so you can edit co
 2. Copy one camp object (the part between `{` and `}`)
 3. Paste it after the last camp, adding a comma
 4. Edit the title, date, location, ages, and color
+
+### Showcase Page (Projects + Pictures)
+**Main file to edit:** `/src/data/showcaseContent.ts`
+
+You can fully update Showcase content without editing React code.
+
+#### 1) Update event text shown at the top of Showcase
+In `showcaseContent.ts`, edit:
+- `hero.subtitle`
+- `eventDetails.dateAndVenue`
+- `eventDetails.campus`
+- `eventDetails.celebrationTitle`
+- `eventDetails.posterSessionText`
+- `eventDetails.pitchCompetitionText`
+
+#### 2) Add a new student project card
+Find the `projects: []` section and add items like this:
+
+```ts
+{
+  id: 1,
+  title: 'Flood Alert App',
+  student: 'Jordan Smith',
+  age: 14,
+  description: 'An app prototype that alerts families when roads may flood.',
+  skills: ['Figma', 'UX', 'Pitching'],
+  image: 'https://your-image-link.jpg',
+  projectUrl: 'https://your-project-link.com' // optional
+}
+```
+
+Tips:
+- Keep each `id` unique (`1`, `2`, `3`, etc.)
+- If you do not have a project link yet, delete `projectUrl` or leave it out
+- Keep the same punctuation style (commas and quotes)
+
+#### 3) Add or replace gallery photos
+Find `gallery.images` and update each image item:
+
+```ts
+{
+  src: 'https://your-photo-link.jpg',
+  alt: 'Short description of the photo'
+}
+```
+
+Photo tips:
+- Use clear horizontal photos when possible
+- Write plain-English alt text (who/what is shown)
+- You can add more photos by copying an existing object and pasting below it
+
+#### 4) If projects are not ready yet
+Edit `projectsEmptyMessage` so visitors see a clear status update.
+
+This is the message shown automatically when the `projects` list is empty.
 
 ### Contact Page
 **File:** `/src/data/contactContent.ts`
@@ -113,6 +168,8 @@ To add an item:
 - Anything inside `{...}` after `className=`
 - The word `useState` or code that looks like `useState(...)`
 - Lines with `//` followed by "Don't edit" warnings
+
+For Showcase updates, stay inside `/src/data/showcaseContent.ts` whenever possible.
 
 **If you accidentally break something:**
 1. Press Ctrl+Z (Windows) or Cmd+Z (Mac) to undo
