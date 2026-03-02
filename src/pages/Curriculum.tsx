@@ -17,8 +17,16 @@ export function Curriculum() {
     return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
   };
 
-  // Glossary terms data
-  const glossaryTerms = curriculumContent.glossaryTerms;
+  // Glossary terms data (duplicates removed by normalized term name)
+  const glossaryTerms = curriculumContent.glossaryTerms.filter((item, index, allTerms) => {
+    const normalizedTerm = item.term.trim().toLowerCase();
+    return (
+      index ===
+      allTerms.findIndex(
+        (candidate) => candidate.term.trim().toLowerCase() === normalizedTerm
+      )
+    );
+  });
 
   // Filter terms based on search
   const filteredTerms = glossaryTerms.filter(item =>
