@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import logoCanCode from '../assets/logo1.png';
+import logoCanCode from '../assets/canCodeLogo.png';
 
 export function Footer() {
   return (

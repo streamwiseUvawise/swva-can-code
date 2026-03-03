@@ -1,124 +1,121 @@
 // Editable content for the Sponsor page.
 export const sponsorContent = {
   hero: {
-    title: 'Become a Sponsor',
+    title: 'How can you support students in your area?',
     subtitle:
-      'Partner with us to empower the next generation of innovators in Southwest Virginia. Your support opens doors to technology education for hundreds of students.'
+      'SWVA school divisions have invested personnel, time, travel dollars, and equipment to ensure all students in SWVA have the opportunity to participate. Sponsors for the regional showcase help us provide refreshments, learning stations, and support incentives for our regional winners.'
   },
   impact: {
-    title: 'Your Impact',
+    title: 'Sponsors Make the Difference!',
     description:
-      "When you sponsor SWVA Can Code, you're investing in students, educators, and the future of our region.",
+      'These kids will be putting their best feet forward, and we want to celebrate them while encouraging the next generation of business leaders and entrepreneurs.',
     stats: [
-      { value: '500+', label: 'Students Served Annually', colorClass: 'text-[#00BCD4]' },
-      { value: '25+', label: 'Camps & Programs', colorClass: 'text-[#E53935]' },
-      { value: '15+', label: 'Partner Schools', colorClass: 'text-[#00BCD4]' },
-      { value: '$50K', label: 'In Scholarships Provided', colorClass: 'text-[#E53935]' }
+      { value: '$2,000', label: 'Main Stage Sponsor', colorClass: 'text-[#00BCD4]' },
+      { value: '$1,000', label: 'Showcase Sponsor', colorClass: 'text-[#E53935]' },
+      { value: '$500', label: "People's Choice Sponsor", colorClass: 'text-[#00BCD4]' },
+      { value: '$250', label: 'Camp Sponsor', colorClass: 'text-[#E53935]' }
     ],
     stories: [
       {
-        title: 'Access for All',
+        title: 'Main Stage Sponsor',
         text:
-          'Sponsor funds provide scholarships ensuring no student is turned away due to cost. Over 40% of our students receive financial assistance.'
+          'Prize sponsor with logo recognition on all printed and digital materials and signage, full page program ad, pre and post event social media recognition, and tickets for 10 guests.'
       },
       {
-        title: 'Equipment & Resources',
+        title: 'Showcase Sponsor',
         text:
-          'Donations help us purchase laptops, software, robotics kits, and other tools that make learning hands-on and engaging.'
+          'Prize sponsor with logo recognition on digital materials and signage, half page program ad, pre and post event social media recognition, and tickets for 5 guests.'
       },
       {
-        title: 'Program Growth',
+        title: "People's Choice & Camp Sponsors",
         text:
-          'Your support allows us to expand to new communities, develop new curriculum, and reach more students across the region.'
+          "People's Choice sponsors support the People's Choice prize and camp sponsors support prizes for local camps, including logo recognition, social media recognition, and 2 guest tickets."
       }
     ]
   },
   tiers: {
     title: 'Sponsorship Levels',
     description:
-      "Choose the level that fits your organization's goals and budget. All sponsors receive recognition and impact reports.",
+      'Choose a sponsorship level to support the SWVA regional showcase and celebrate student achievement.',
     items: [
       {
-        name: 'Bronze',
-        price: '$500',
-        subtitle: 'Supporter',
+        name: 'Main Stage Sponsor',
+        price: '$2000',
+        subtitle: 'Premier',
         accent: '#CD7F32',
         benefits: [
-          'Logo on website',
-          'Social media recognition',
-          'Annual impact report',
-          'Sponsor 2 student scholarships'
+          'Prize sponsor',
+          'Logo recognition on all printed and digital materials and signage',
+          'Full page program ad',
+          'Pre and post event social media recognition',
+          'Tickets for 10 guests'
         ]
       },
       {
-        name: 'Silver',
-        price: '$1,500',
-        subtitle: 'Partner',
+        name: 'Showcase Sponsor',
+        price: '$1000',
+        subtitle: 'Featured',
         accent: '#C0C0C0',
         benefits: [
-          'All Bronze benefits',
-          'Logo on camp materials',
-          'Recognition at events',
-          'Sponsor 5 student scholarships',
-          'Quarterly updates'
+          'Prize sponsor',
+          'Logo recognition on digital materials and signage',
+          'Half page program ad',
+          'Pre and post event social media recognition',
+          'Tickets for 5 guests'
         ]
       },
       {
-        name: 'Gold',
-        price: '$3,500',
-        subtitle: 'Champion',
+        name: "People's Choice Sponsor",
+        price: '$500',
+        subtitle: 'Community Favorite',
         accent: '#FFD700',
         badge: 'Popular',
         benefits: [
-          'All Silver benefits',
-          'Prominent logo placement',
-          'Speaking opportunity at event',
-          'Sponsor 10 student scholarships',
-          'Named camp sponsorship option',
-          'Custom impact video'
+          "People's Choice Prize sponsor",
+          'Logo recognition on digital materials, signage, and program',
+          'Pre and post event social media recognition',
+          'Tickets for 2 guests'
         ]
       },
       {
-        name: 'Platinum',
-        price: '$7,500+',
-        subtitle: 'Founding Partner',
+        name: 'Camp Sponsor',
+        price: '$250',
+        subtitle: 'Local Impact',
         accent: '#00BCD4',
         benefits: [
-          'All Gold benefits',
-          'Premier logo placement',
-          'Exclusive event access',
-          'Sponsor entire camp series',
-          'Dedicated partnership manager',
-          'Custom program development'
+          'Prizes for local camps sponsor',
+          'Logo recognition on digital materials, signage, and program',
+          'Event day social media recognition',
+          'Tickets for 2 guests'
         ]
       }
     ],
     footerText:
-      "All sponsorship levels are flexible and can be customized to meet your organization's needs.",
-    buttonLabel: 'Discuss Custom Partnership',
+      'Learn more about becoming a sponsor by completing the contact form.',
+    buttonLabel: 'Learn More About Becoming a Sponsor',
     buttonTo: '/contact'
   },
   whySponsor: {
-    title: 'Why Sponsor SWVA Can Code?',
+    title: 'Why Your Sponsorship Matters',
     items: [
       {
-        title: 'Tangible Community Impact',
+        title: 'Support Student Opportunity',
         text:
-          'Your sponsorship directly funds scholarships, equipment, and programs that serve hundreds of students annually. You will see the impact through student projects, testimonials, and measurable outcomes.',
+          'SWVA school divisions are already investing personnel, travel, and equipment so students can participate. Your sponsorship strengthens those efforts and helps create meaningful showcase experiences for students across the region.',
         bullets: [
-          'Detailed impact reports showing how funds are used',
-          'Stories and testimonials from students and families',
-          'Opportunity to attend camps and events'
+          'Funds refreshments and learning stations',
+          'Supports incentives for regional winners',
+          'Expands support for participating school divisions'
         ]
       },
       {
-        title: 'Build Your Brand & Talent Pipeline',
+        title: 'Recognize and Encourage Future Leaders',
         text:
-          'Sponsorship increases brand visibility among families, educators, and community leaders while demonstrating your commitment to education and workforce development.',
+          'Sponsors help celebrate students as they put their best feet forward. Your investment encourages the next generation of business leaders and entrepreneurs while showing your organization\'s commitment to local youth.',
         bullets: [
-          'Logo placement on website, materials, and at events',
-          'Social media recognition and co-branded content',
-          'Connect with future tech talent in our region'
+          'Pre and post event social media recognition',
+          'Program and signage logo visibility',
+          'Direct connection to student achievement in SWVA'
         ]
       }
     ]
@@ -126,22 +123,40 @@ export const sponsorContent = {
   sponsors: {
     title: 'Our Valued Sponsors',
     description:
-      "We're grateful to these organizations for their commitment to technology education in Southwest Virginia.",
-    placeholderCount: 8
+      'We are grateful to the organizations and community partners investing in SWVA students through showcase sponsorship.',
+    items: [
+      {
+        name: 'Public Education Consortium',
+        fileName: 'Public Education consortium.png'
+      },
+      {
+        name: 'The Jefferson Trust',
+        fileName: 'The Jefferson Trust.png'
+      },
+      {
+        name: 'The Slemp Foundation',
+        fileName: 'The Slemp Foundation.png'
+      },
+      {
+        name: 'UVA Wise',
+        fileName: 'UVAWISE.png'
+      }
+    ]
   },
   packet: {
-    title: 'Download Our Sponsorship Packet',
+    title: 'Ready to Sponsor?',
     description:
-      'Get detailed information about sponsorship levels, benefits, and our impact. Perfect for sharing with your team or board.',
-    buttonLabel: 'Download PDF (2.3 MB)'
+      'Use the contact form to share your sponsorship interest and our team will follow up with next steps.',
+    buttonLabel: 'Contact the Sponsorship Team',
+    pdfFileName: 'Sponsor Packet.pdf'
   },
   cta: {
-    title: 'Ready to Make a Difference?',
+    title: 'Project Lead',
     description:
-      "Let's discuss how your organization can partner with SWVA Can Code to empower the next generation of innovators.",
-    primaryLabel: 'Contact Our Team',
+      'Heather Askea, STREAM Outreach Coordinator, The University of Virginia\'s College at Wise',
+    primaryLabel: 'Open Sponsor Contact Form',
     primaryTo: '/contact',
-    secondaryLabel: 'Email: sponsors@swvacancode.org',
-    secondaryHref: 'mailto:sponsors@swvacancode.org'
+    secondaryLabel: 'haskea@uvawise.edu | (276) 376-4554',
+    secondaryHref: 'mailto:haskea@uvawise.edu'
   }
 };

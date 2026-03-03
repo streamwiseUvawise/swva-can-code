@@ -1,9 +1,64 @@
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import { Palette, Gamepad2, Zap, Users, Calendar, ArrowRight } from 'lucide-react';
-import logo2 from '../assets/logo2.png';
+import canCreateLogo from '../assets/canCreateLogo.png';
 import { swvaCanCreateContent } from '../data/swvaCanCreateContent';
 
+const canCreateAssetModules = import.meta.glob('../assets/can create/*.{png,jpg,jpeg,avif,webp,gif}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>;
+
+function buildCanCreateAltText(fileName: string) {
+  const normalizedLabel = fileName
+    .replace(/\.(avif|webp|png|jpe?g|gif)$/i, '')
+    .replace(/-[A-Za-z0-9]{8,}$/, '')
+    .replace(/[_-]+/g, ' ')
+    .trim();
+
+  return normalizedLabel
+    ? `SWVA Can Create camp photo: ${normalizedLabel}`
+    : 'SWVA Can Create camp photo';
+}
+
+const canCreateSlides = Object.entries(canCreateAssetModules)
+  .map(([path, src]) => {
+    const fileName = path.split('/').pop() ?? '';
+    return {
+      src,
+      alt: buildCanCreateAltText(fileName),
+      fileName
+    };
+  })
+  .sort((left, right) => left.fileName.localeCompare(right.fileName));
+
 export function SWVACanCreate() {
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  const hasSlides = canCreateSlides.length > 0;
+
+  useEffect(() => {
+    if (!hasSlides) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveSlideIndex((previousIndex) => (previousIndex + 1) % canCreateSlides.length);
+    }, 4000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [hasSlides]);
+
+  const activeSlide = useMemo(() => {
+    if (!hasSlides) {
+      return null;
+    }
+
+    return canCreateSlides[activeSlideIndex];
+  }, [activeSlideIndex, hasSlides]);
+
   return (
     <div>
       {/* Hero Section */}
@@ -15,7 +70,7 @@ export function SWVACanCreate() {
           <div className="flex flex-col items-start gap-8 text-left sm:flex-row sm:items-center">
             <div className="flex items-center justify-start">
               <img
-                src={logo2}
+                src={canCreateLogo}
                 alt="SWVA Can Create logo"
                 className="w-20 h-auto sm:w-28"
               />
@@ -152,6 +207,33 @@ export function SWVACanCreate() {
               </div>
             ))}
           </div>
+
+          {hasSlides && activeSlide && (
+            <div className="mt-12 max-w-4xl mx-auto">
+              <div className="bg-white rounded-xl shadow-md border border-[#1A237E]/10 overflow-hidden">
+                <div className="aspect-[16/9] bg-white">
+                  <img
+                    src={activeSlide.src}
+                    alt={activeSlide.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="px-4 py-3 flex items-center justify-center gap-2 bg-white">
+                  {canCreateSlides.map((slide, index) => (
+                    <button
+                      key={slide.fileName}
+                      type="button"
+                      onClick={() => setActiveSlideIndex(index)}
+                      aria-label={`Show slide ${index + 1}`}
+                      className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                        index === activeSlideIndex ? 'bg-[#00BCD4]' : 'bg-[#1A237E]/30 hover:bg-[#1A237E]/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

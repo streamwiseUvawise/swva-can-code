@@ -1,11 +1,11 @@
 const excludedShowcaseAssetNames = new Set([
   'banner.png',
-  'logo1.png',
-  'logo2.png',
+  'canCodeLogo.png',
+  'canCreateLogo.png',
   'swift.svg'
 ]);
 
-const showcaseAssetModules = import.meta.glob('../assets/*.{png,jpg,jpeg,avif,webp,gif}', {
+const showcaseAssetModules = import.meta.glob('../assets/showcase/*.{png,jpg,jpeg,avif,webp,gif}', {
   eager: true,
   import: 'default'
 }) as Record<string, string>;
@@ -124,6 +124,6 @@ export const showcaseContent = {
   stats: [
     { value: '50+', label: 'Projects Created', colorClass: 'text-[#00BCD4]' },
     { value: '15+', label: 'Camps Run', colorClass: 'text-[#E53935]' },
-    { value: '30+', label: 'Awards Won', colorClass: 'text-[#00BCD4]' }
+    { value: '20+', label: 'Awards Won', colorClass: 'text-[#00BCD4]' }
   ]
 };

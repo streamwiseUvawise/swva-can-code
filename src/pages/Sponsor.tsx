@@ -2,6 +2,63 @@ import { Link } from 'react-router';
 import { Heart, Users, Award, TrendingUp, Download, ArrowRight } from 'lucide-react';
 import { sponsorContent } from '../data/sponsorContent';
 
+const sponsorTierAssetModules = import.meta.glob('../assets/sponsor logo/*.{png,jpg,jpeg,avif,webp,gif,svg}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>;
+
+function buildSponsorTierAltText(fileName: string) {
+  const normalizedLabel = fileName
+    .replace(/\.(avif|webp|png|jpe?g|gif|svg)$/i, '')
+    .replace(/-[A-Za-z0-9]{8,}$/, '')
+    .replace(/[_-]+/g, ' ')
+    .trim();
+
+  return normalizedLabel
+    ? `Sponsorship level image: ${normalizedLabel}`
+    : 'Sponsorship level image';
+}
+
+const sponsorTierImages = Object.entries(sponsorTierAssetModules)
+  .map(([path, src]) => {
+    const fileName = path.split('/').pop() ?? '';
+    return {
+      src,
+      alt: buildSponsorTierAltText(fileName),
+      fileName
+    };
+  })
+  .sort((left, right) => left.fileName.localeCompare(right.fileName));
+
+const sponsorLogosByFileName = sponsorTierImages.reduce<Record<string, { src: string; alt: string }>>((acc, image) => {
+  acc[image.fileName] = { src: image.src, alt: image.alt };
+  return acc;
+}, {});
+
+const sponsorPacketPdf = new URL(`../assets/sponsor logo/${sponsorContent.packet.pdfFileName}`, import.meta.url).href;
+
+function getTierPlaceholderImage(tierName: string) {
+  const normalizedTierName = tierName.toLowerCase();
+
+  if (normalizedTierName.includes('main stage')) {
+    return sponsorTierImages.find((item) => /platinum/i.test(item.fileName)) ?? null;
+  }
+
+  if (normalizedTierName.includes('showcase')) {
+    return sponsorTierImages.find((item) => /gold/i.test(item.fileName)) ?? null;
+  }
+
+  if (normalizedTierName.includes("people's choice")) {
+    return sponsorTierImages.find((item) => /silver/i.test(item.fileName)) ?? null;
+  }
+
+  if (normalizedTierName.includes('camp')) {
+    return sponsorTierImages.find((item) => /bronze/i.test(item.fileName)) ?? null;
+  }
+
+  return null;
+}
+
 export function Sponsor() {
   return (
     <div>
@@ -21,15 +78,6 @@ export function Sponsor() {
           <div className="text-center mb-16">
             <h2 className="text-[#1A237E] mb-4">{sponsorContent.impact.title}</h2>
             <p className="text-[#1A237E]/70 text-xl max-w-3xl mx-auto">{sponsorContent.impact.description}</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {sponsorContent.impact.stats.map((stat, index) => (
-              <div key={`${stat.label}-${index}`} className="text-center">
-                <div className={`text-5xl font-bold mb-2 ${stat.colorClass}`}>{stat.value}</div>
-                <div className="text-[#1A237E]/70">{stat.label}</div>
-              </div>
-            ))}
           </div>
 
           {/* Impact Stories */}
@@ -57,6 +105,10 @@ export function Sponsor() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {sponsorContent.tiers.items.map((tier, index) => (
+              (() => {
+                const tierImage = getTierPlaceholderImage(tier.name);
+
+                return (
               <div
                 key={`${tier.name}-${index}`}
                 className={`bg-white rounded-xl p-6 shadow-md border-t-4 ${tier.badge ? 'relative' : ''}`}
@@ -65,6 +117,15 @@ export function Sponsor() {
                 {tier.badge && (
                   <div className="absolute -top-3 right-6 bg-[#E53935] text-white text-xs px-3 py-1 rounded-full font-medium">
                     {tier.badge}
+                  </div>
+                )}
+                {tierImage && (
+                  <div className="flex justify-center mb-4">
+                    <img
+                      src={tierImage.src}
+                      alt={tierImage.alt}
+                      className="h-14 w-auto object-contain"
+                    />
                   </div>
                 )}
                 <div className="text-center mb-6">
@@ -81,6 +142,8 @@ export function Sponsor() {
                   ))}
                 </ul>
               </div>
+                );
+              })()
             ))}
           </div>
 
@@ -127,18 +190,28 @@ export function Sponsor() {
           <h2 className="text-[#1A237E] text-center mb-12">{sponsorContent.sponsors.title}</h2>
           <p className="text-center text-[#1A237E]/70 mb-12 max-w-2xl mx-auto">{sponsorContent.sponsors.description}</p>
 
-          {/* Sponsor Logo Grid (Placeholder) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {Array.from({ length: sponsorContent.sponsors.placeholderCount }).map((_, index) => (
-              <div 
-                key={`sponsor-${index + 1}`}
+            {sponsorContent.sponsors.items.map((sponsor) => {
+              const sponsorImage = sponsorLogosByFileName[sponsor.fileName];
+
+              return (
+              <div
+                key={sponsor.name}
                 className="bg-white rounded-lg p-6 flex items-center justify-center h-32 border border-[#1A237E]/10 hover:shadow-md transition-shadow"
+                aria-label={sponsor.name}
               >
-                <div className="text-[#1A237E]/40 text-center text-sm">
-                  Sponsor Logo {index + 1}
-                </div>
+                {sponsorImage ? (
+                  <img
+                    src={sponsorImage.src}
+                    alt={sponsor.name}
+                    className="max-h-20 w-auto object-contain"
+                  />
+                ) : (
+                  <div className="text-[#1A237E]/40 text-center text-sm">{sponsor.name}</div>
+                )}
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -150,10 +223,15 @@ export function Sponsor() {
             <Download className="w-16 h-16 text-[#00BCD4] mx-auto mb-6" />
             <h2 className="text-[#1A237E] mb-4">{sponsorContent.packet.title}</h2>
             <p className="text-[#1A237E]/70 mb-8 max-w-2xl mx-auto">{sponsorContent.packet.description}</p>
-            <button className="inline-flex items-center gap-2 px-8 py-4 bg-[#00BCD4] text-white rounded-lg font-medium hover:bg-[#00ACC1] transition-colors shadow-lg">
+            <a
+              href={sponsorPacketPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#00BCD4] text-white rounded-lg font-medium hover:bg-[#00ACC1] transition-colors shadow-lg"
+            >
               <Download className="w-5 h-5" />
               {sponsorContent.packet.buttonLabel}
-            </button>
+            </a>
           </div>
         </div>
       </section>

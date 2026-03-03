@@ -2,6 +2,12 @@
 
 This guide helps you find and edit common elements on the SWVA Can Code website.
 
+## 📚 Documentation Hub
+
+- Full project documentation: `/PROJECT-DOCUMENTATION.md`
+- Quick setup and overview: `/README.md`
+- This beginner editing guide: `/src/EDITING-GUIDE.md`
+
 ## 🎨 Brand Colors Reference
 
 When you see these color codes in the files, here's what they mean:
@@ -123,11 +129,38 @@ This is the message shown automatically when the `projects` list is empty.
 - Form field labels and placeholders
 - FAQ questions and answers
 
+**Form submissions (Formspree setup):**
+- Contact form delivery is configured using an environment variable in the project root.
+- Start from the template file `.env.example` in the project root.
+- Copy `.env.example` to `.env`.
+- Replace `yourFormId` in `VITE_FORMSPREE_ENDPOINT` with your real Formspree form ID.
+
 **To add a new FAQ:**
 1. Find the `faq.items` list in `/src/data/contactContent.ts`
 2. Copy one FAQ object (the part between `{` and `}`)
 3. Paste it after the last FAQ, adding a comma
 4. Edit the question and answer text
+
+### Sponsor Page (Logos + Packet)
+**File:** `/src/data/sponsorContent.ts`
+
+**What you can edit:**
+- Sponsor card text and pricing (`tiers.items`)
+- Current sponsor logos shown on page (`sponsors.items`)
+- Sponsorship packet file used by the button (`packet.pdfFileName`)
+
+**To add a new sponsor logo card:**
+1. Add the image file to `/src/assets/sponsor logo/`
+2. In `/src/data/sponsorContent.ts`, find `sponsors.items`
+3. Copy an existing item and paste a new one
+4. Update:
+  - `name` (display name)
+  - `fileName` (must exactly match the image filename)
+
+**To change the sponsorship packet PDF:**
+1. Add or replace the PDF in `/src/assets/sponsor logo/`
+2. In `/src/data/sponsorContent.ts`, update `packet.pdfFileName`
+3. Use the exact filename, including spaces and `.pdf`
 
 ## 🔧 Common Editing Tasks
 

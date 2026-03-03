@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Code, Users, Lightbulb, Award, ArrowRight, Calendar, MapPin } from 'lucide-react';
-import bannerImage from '../assets/logo1.png';
+import bannerImage from '../assets/canCodeLogo.png';
 import swiftLogo from '../assets/swift.svg';
 import { homeContent } from '../data/homeContent';
 import { findCampContent } from '../data/findCampContent';

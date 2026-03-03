@@ -3,6 +3,8 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { contactContent } from '../data/contactContent';
 
 export function Contact() {
+  const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+
   // Form state management - don't edit this section
   const [formData, setFormData] = useState({
     name: '',
@@ -13,14 +15,35 @@ export function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send to a backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setSubmitError(null);
+
+    if (!formspreeEndpoint) {
+      setSubmitError('Contact form is not configured yet. Please set VITE_FORMSPREE_ENDPOINT.');
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to send your message right now. Please try again.');
+      }
+
+      setSubmitted(true);
       setFormData({
         name: '',
         email: '',
@@ -28,7 +51,15 @@ export function Contact() {
         inquiryType: 'general',
         message: ''
       });
-    }, 3000);
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -154,6 +185,12 @@ export function Contact() {
                   </div>
                 )}
 
+                {submitError && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                    {submitError}
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* NAME FIELD */}
                   <div>
@@ -248,10 +285,11 @@ export function Contact() {
                   {/* SUBMIT BUTTON */}
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#00BCD4] text-white rounded-lg font-medium hover:bg-[#00ACC1] transition-colors shadow-lg"
                   >
                     <Send className="w-5 h-5" />
-                    {contactContent.form.submitLabel}
+                    {isSubmitting ? 'Sending...' : contactContent.form.submitLabel}
                   </button>
 
                   <p className="text-sm text-[#1A237E]/60 text-center">

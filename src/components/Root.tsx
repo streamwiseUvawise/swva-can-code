@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router';
 import { FileText, Users, GraduationCap, DollarSign, Settings, GitBranch, BookOpen } from 'lucide-react';
-import logoCanCode from '../assets/logo1.png';
+import logoCanCode from '../assets/canCodeLogo.png';
 
 export function Root() {
   const location = useLocation();

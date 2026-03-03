@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import logoCanCode from '../assets/logo1.png';
+import logoCanCode from '../assets/canCodeLogo.png';
 
 export function Navbar() {
   const location = useLocation();
