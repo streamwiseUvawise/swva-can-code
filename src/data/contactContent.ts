@@ -82,7 +82,7 @@ export const contactContent = {
       {
         question: 'How much do camps cost?',
         answer:
-          'Most camps range from $50-$150 per week. We offer scholarships and sliding-scale pricing to ensure all students can participate. Contact us to learn more about financial assistance.'
+          'Camps are free of cost due to the support of our generous sponsors'
       },
       {
         question: 'Do students need prior coding experience?',
