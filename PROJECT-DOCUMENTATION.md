@@ -200,6 +200,7 @@ For step-by-step beginner instructions, use `/src/EDITING-GUIDE.md`.
 
 - Environment template: `/.env.example` (if present in your branch)
 - Contact form integration uses Formspree endpoint configuration referenced in the editing guide.
+- Contact form submissions are stored in Formspree (not in this repository) and are accessed from the Formspree dashboard for the configured form ID.
 
 ---
 

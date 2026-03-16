@@ -134,6 +134,9 @@ This is the message shown automatically when the `projects` list is empty.
 - Start from the template file `.env.example` in the project root.
 - Copy `.env.example` to `.env`.
 - Replace `yourFormId` in `VITE_FORMSPREE_ENDPOINT` with your real Formspree form ID.
+- Contact form data is sent directly to Formspree and is not stored in this code repository.
+- Access submissions in your Formspree dashboard under the configured form (same form ID used in `VITE_FORMSPREE_ENDPOINT`).
+- If email notifications are enabled in Formspree, submission data is also delivered to that inbox.
 
 **To add a new FAQ:**
 1. Find the `faq.items` list in `/src/data/contactContent.ts`

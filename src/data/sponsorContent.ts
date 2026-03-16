@@ -147,7 +147,7 @@ export const sponsorContent = {
     title: 'Ready to Sponsor?',
     description:
       'Use the contact form to share your sponsorship interest and our team will follow up with next steps.',
-    buttonLabel: 'Contact the Sponsorship Team',
+    buttonLabel: 'Download Sponsor Packet',
     pdfFileName: 'Sponsor Packet.pdf'
   },
   cta: {
