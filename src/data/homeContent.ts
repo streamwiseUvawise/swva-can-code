@@ -151,7 +151,7 @@ export const homeContent = {
     links: [
       {
         label: 'Learn more',
-        href: 'https://www.apple.com/education/k12/everyone-can-code/'
+        href: 'https://www.apple.com/education/k12/'
       },
       {
         label: 'Explore Apple Education success stories',
