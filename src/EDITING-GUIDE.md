@@ -66,6 +66,32 @@ Most page copy, lists, and cards are now stored in data files so you can edit co
 3. Paste it after the last camp, adding a comma
 4. Edit the title, date, location, ages, and color
 
+### Curriculum Page (Glossary Video Links)
+**File:** `/src/data/curriculumContent.ts`
+
+The glossary video player uses `videoId` values, not full YouTube URLs.
+
+**Where to paste:**
+- In `glossaryTerms`, find the term you want to edit
+- Replace only the `videoId` value
+
+Example:
+```ts
+{
+  term: 'Variable',
+  difficulty: 'Beginner',
+  definition: '...',
+  videoId: 'aqz-KE-bpKQ',
+  color: '#00BCD4'
+}
+```
+
+**How to get the correct value:**
+- If your link is `https://www.youtube.com/watch?v=aqz-KE-bpKQ`, use `aqz-KE-bpKQ`
+- If your link is `https://youtu.be/aqz-KE-bpKQ`, use `aqz-KE-bpKQ`
+
+Do not paste the entire URL into `videoId`.
+
 ### Showcase Page (Projects + Pictures)
 **Main file to edit:** `/src/data/showcaseContent.ts`
 

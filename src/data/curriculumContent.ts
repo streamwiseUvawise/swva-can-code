@@ -346,7 +346,7 @@ export const curriculumContent = {
       term: 'Else Block',
       difficulty: 'Beginner',
       definition: 'The last block of code in an if statement that runs if all earlier conditions are false.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'J3P82fy_QxM',
       color: '#E53935'
     },
     {
@@ -354,7 +354,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A block in an if statement used to check an additional condition not handled by earlier if or else if blocks.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'ZctuVt7E8aU',
       color: '#00BCD4'
     },
     {
@@ -390,7 +390,7 @@ export const curriculumContent = {
       term: 'Index',
       difficulty: 'Beginner',
       definition: 'A number that represents the position of an item in an array. Indices start at 0.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'hJalwNqhBVg',
       color: '#E53935'
     },
     {
