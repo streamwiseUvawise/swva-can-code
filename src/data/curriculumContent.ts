@@ -362,7 +362,7 @@ export const curriculumContent = {
       difficulty: 'Intermediate',
       definition:
         'A type that defines a fixed set of related values called cases, where one case is chosen at a time.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'SIpxi-tbo4E',
       color: '#E53935'
     },
     {
@@ -376,14 +376,14 @@ export const curriculumContent = {
       term: 'If Block',
       difficulty: 'Beginner',
       definition: 'The first block in an if statement that runs when the condition is true.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'lL7nfPu95rw',
       color: '#E53935'
     },
     {
       term: 'If Statement',
       difficulty: 'Beginner',
       definition: 'A code structure used to run code based on one or more conditions.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'bLoclyPZ7zY',
       color: '#00BCD4'
     },
     {
@@ -397,7 +397,7 @@ export const curriculumContent = {
       term: 'Index Out of Range Error',
       difficulty: 'Beginner',
       definition: 'An error caused by trying to access an array with an index outside its valid range.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'ChQHJwNBD7M',
       color: '#00BCD4'
     },
     {
@@ -405,14 +405,14 @@ export const curriculumContent = {
       difficulty: 'Intermediate',
       definition:
         'The act of creating a new instance of a type, including setting initial values for its properties.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'w7n7QY3zPcs',
       color: '#E53935'
     },
     {
       term: 'Inner Loop',
       difficulty: 'Intermediate',
       definition: 'A loop that is nested inside another loop.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'g26mGWNrMx4',
       color: '#00BCD4'
     },
     {
