@@ -545,24 +545,31 @@ export const curriculumContent = {
       color: '#00BCD4'
     },
     {
+      term: 'Sequence',
+      difficulty: 'Beginner',
+      definition: 'The specific order in which code statements are executed in an application.',
+      videoId: 'nGZ1olKf_bSR8_l3',
+      color: '#E53935'    
+    },
+    {
       term: 'State',
       difficulty: 'Beginner',
       definition: 'The stored information of a variable, application, or system at a given time.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'QH6eT4BZi6qXxOVa',
       color: '#E53935'
     },
     {
       term: 'Statement',
       difficulty: 'Beginner',
       definition: 'A structure, such as a loop or if statement, that organizes code in an application.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'hu3gxIe3UPeb7fWV',
       color: '#00BCD4'
     },
     {
       term: 'String',
       difficulty: 'Beginner',
       definition: 'A type that stores a series of characters, such as "Hello, world!".',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'lsnp0hPaedufJ8SR',
       color: '#E53935'
     },
     {
@@ -570,14 +577,14 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'Apple\'s programming language used for writing apps for iPhone, iPad, Mac, Apple Watch, and Apple TV.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'e9H5kh5kIHKRugip',
       color: '#00BCD4'
     },
     {
       term: 'Syntax',
       difficulty: 'Beginner',
       definition: 'The rules for writing code that computers can understand and run.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'ILGlv7-Fm23VkUom',
       color: '#E53935'
     },
     {
