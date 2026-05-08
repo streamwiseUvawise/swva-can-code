@@ -138,7 +138,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A function is like a mini-program inside your program. You give it a name and tell it what to do, then you can use that name to make it run whenever you need it.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'dpR4w1CMbnw',
       color: '#00BCD4'
     },
     {
@@ -190,14 +190,6 @@ export const curriculumContent = {
       color: '#00BCD4'
     },
     {
-      term: 'Debugging',
-      difficulty: 'Beginner',
-      definition:
-        'Debugging is the process of finding and fixing errors in your code. It is like being a detective, looking for clues to figure out why your program isn\'t working the way you want it to.',
-      videoId: 'dQw4w9WgXcQ',
-      color: '#E53935' 
-    },
-    {
       term: 'Application Software',
       difficulty: 'Beginner',
       definition:
@@ -240,14 +232,14 @@ export const curriculumContent = {
       term: 'Boolean',
       difficulty: 'Beginner',
       definition: 'A type that has a value of either true or false.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'GTN_y5zVFOs',
       color: '#E53935'
     },
     {
-      term: 'Bug',
+      term: 'Bug and Debugging',
       difficulty: 'Beginner',
-      definition: 'An error in code that prevents an application from running as expected.',
-      videoId: 'dQw4w9WgXcQ',
+      definition: 'Bug is an error in code that prevents an application from running as expected. Debugging is the process of finding and fixing these errors. It is like being a detective, looking for clues to figure out why your program isn\'t working the way you want it to.',
+      videoId: 'Q4XAvmpamQ0',
       color: '#00BCD4'
     },
     {
@@ -303,13 +295,6 @@ export const curriculumContent = {
       definition: 'A named container that stores a value that cannot be changed.',
       videoId: 'dQw4w9WgXcQ',
       color: '#E53935'
-    },
-    {
-      term: 'Debug',
-      difficulty: 'Beginner',
-      definition: 'To find and fix errors in code that prevent an application from running correctly.',
-      videoId: 'dQw4w9WgXcQ',
-      color: '#00BCD4'
     },
     {
       term: 'Declaration',
