@@ -3,52 +3,52 @@ const campDuration = '1 week';
 export const findCampContent = {
   hero: {
     title: 'Find a Camp',
-    subtitle: 'We are planning camps for June and July. Exact dates will be announced soon.'
+    //subtitle: 'We are planning camps for June and July. Exact dates will be announced soon.'
   },
   sectionHeader: {
     title: 'Summer 2026 Camps',
     description:
-      'All camps are free thanks to sponsor support. Dates are TBD, with sessions planned for June and July.'
+      'All camps are free thanks to sponsor support. Sessions are planned for June and July.'
   },
   camps: [
-    {
-      id: 1,
-      title: 'Bland County Camp',
-      date: 'June/July 2026 (dates TBD)',
-      location: 'Bland County, VA',
-      ageRange: '10-18',
-      duration: campDuration,
-      description:
-        'Camps follow the SWVA Can Code curriculum with hands-on web app design, problem-solving, and collaboration.',
-      spots: 'Free camp',
-      contacts: [
-        { label: 'Superintendent', value: 'lradford@bland.k12.va.us' },
-        { label: 'Tech Director', value: 'dtate@bland.k12.va.us' }
-      ],
-      color: '#00BCD4'
-    },
+    // {
+    //   id: 1,
+    //   title: 'Bland County Camp',
+    //   date: 'June/July 2026 (dates TBD)',
+    //   location: 'Bland County, VA',
+    //   ageRange: '10-18',
+    //   duration: campDuration,
+    //   description:
+    //     'Camps follow the SWVA Can Code curriculum with hands-on web app design, problem-solving, and collaboration.',
+    //   spots: 'Free camp',
+    //   contacts: [
+    //     { label: 'Superintendent', value: 'lradford@bland.k12.va.us' },
+    //     { label: 'Tech Director', value: 'dtate@bland.k12.va.us' }
+    //   ],
+    //   color: '#00BCD4'
+    // },
     {
       id: 2,
       title: 'Buchanan County Camp',
-      date: 'June/July 2026 (dates TBD)',
+      date: '',
       location: 'Buchanan County, VA',
-      ageRange: '10-18',
+      ageRange: '',
       duration: campDuration,
       description:
         'Camps follow the SWVA Can Code curriculum with hands-on web app design, problem-solving, and collaboration.',
       spots: 'Free camp',
-      contacts: [
-        { label: 'Superintendent', value: 'sherry.fletcher@bcpsk12.com' },
-        { label: 'Tech Director', value: 'kevin.yates@bcpsk12.com' },
-        { label: 'Camp Lead', value: 'karen.taylor@bcpsk12.com' },
-        { label: 'Camp Instructor', value: 'debbie.owens@bcpsk12.com' }
-      ],
-      color: '#E53935'
+      //contacts: [
+        //{ label: 'Superintendent', value: 'sherry.fletcher@bcpsk12.com' },
+        //{ label: 'Tech Director', value: 'kevin.yates@bcpsk12.com' },
+        //{ label: 'Camp Lead', value: 'karen.taylor@bcpsk12.com' },
+        //{ label: 'Camp Instructor', value: 'debbie.owens@bcpsk12.com' }
+      //],
+      //color: '#E53935'
     },
     {
       id: 3,
       title: 'Bristol Camp',
-      date: 'June/July 2026 (dates TBD)',
+      date: '',
       location: 'Bristol, VA',
       ageRange: '10-18',
       duration: campDuration,
