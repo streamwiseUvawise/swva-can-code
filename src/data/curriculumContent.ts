@@ -122,7 +122,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         "A variable is like a container that stores information in your code. You can put something in it (like a number or word) and use it later, or even change what's inside.",
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'Q2YfMhH7XtY',
       color: '#00BCD4'
     },
     {
@@ -130,7 +130,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A loop is a way to repeat the same action over and over without writing the same code multiple times. It is like telling your computer, "Do this 10 times," and it does!',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'YBxDiA7JTKY',
       color: '#E53935'
     },
     {
@@ -154,7 +154,7 @@ export const curriculumContent = {
       difficulty: 'Intermediate',
       definition:
         'An array is like a list that can hold multiple items in one place. Instead of creating separate variables for each thing, you can keep them all together in an array.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'kTUJ6T6fKmo',
       color: '#00BCD4'
     },
     {
@@ -162,7 +162,7 @@ export const curriculumContent = {
       difficulty: 'Intermediate',
       definition:
         'An algorithm is a step-by-step set of instructions for solving a problem or completing a task. It is like a recipe for your code!',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '6F9sIC8jV5s',
       color: '#E53935'
     },
     {
@@ -170,7 +170,7 @@ export const curriculumContent = {
       difficulty: 'Advanced',
       definition:
         'Object-oriented programming is a way of organizing code using "objects" that represent real-world things. Each object can have its own properties and actions, making it easier to manage complex programs.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'fOZQuoGGB6U',
       color: '#00BCD4'
     },
     {
@@ -178,7 +178,7 @@ export const curriculumContent = {
       difficulty: 'Advanced',
       definition:
         'Recursion is when a function calls itself in order to solve a problem. It can be a powerful way to write code, but it can also be tricky to understand at first!',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'dBwHJedxJ28',
       color: '#E53935'
     },
     {
@@ -186,7 +186,7 @@ export const curriculumContent = {
       difficulty: 'Advanced',
       definition:
         'An API (Application Programming Interface) is a way for different software programs to talk to each other. It allows you to use features or data from another service in your own code.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '-JMmNCYZaYA',
       color: '#00BCD4'
     },
     {
@@ -194,7 +194,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'Software, made up of code, that allows you to perform specific tasks. For example, you use the Messages app to send and receive messages.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'Kvssxva_osQ',
       color: '#00BCD4'
     },
     {
@@ -202,7 +202,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'An input value passed into a function to customize its behavior. For example, in move(distance: 3), 3 is an argument.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'JP6mZ1wBJ0w',
       color: '#E53935'
     },
     {
@@ -210,14 +210,14 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A symbol, such as +, -, *, or /, that performs a basic mathematical operation on one or more numbers.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'XND61OaEbFs',
       color: '#00BCD4'
     },
     {
       term: 'Assignment',
       difficulty: 'Beginner',
       definition: 'An action that sets the value of a variable or constant.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'FDwx3pmsOhE',
       color: '#E53935'
     },
     {
@@ -225,7 +225,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'The = symbol used to set the value of a variable. For example, greeting = "hello" sets the value of greeting to "hello".',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'FDwx3pmsOhE',
       color: '#00BCD4'
     },
     {
@@ -247,7 +247,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'To call a function in code is to instruct that function to run, performing the actions defined inside it.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'JHJbpuJmHUI',
       color: '#E53935'
     },
     {
@@ -255,7 +255,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A style of writing compound words in which each new word begins with a capital letter and contains no spaces. In lower camel case, the first letter is lowercase.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'kSmi2myNQ3k',
       color: '#00BCD4'
     },
     {
@@ -263,7 +263,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A symbol, such as ==, !=, <, >, <=, or >=, used to compare two values and return whether the comparison is true.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'x38IGElwEyE',
       color: '#E53935'
     },
     {
@@ -278,7 +278,7 @@ export const curriculumContent = {
       difficulty: 'Intermediate',
       definition:
         'An operator that combines assignment with another operation, such as addition or subtraction, for example += or -=.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'LbezQ7-S3sk',
       color: '#E53935'
     },
     {
@@ -286,14 +286,14 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'Code that runs only when specific conditions are met, such as in if statements or while loops.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '6QVRb7197uA',
       color: '#00BCD4'
     },
     {
       term: 'Constant',
       difficulty: 'Beginner',
       definition: 'A named container that stores a value that cannot be changed.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'Q2YfMhH7XtY',
       color: '#E53935'
     },
     {
@@ -426,35 +426,35 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A variable declared inside a function, loop, or other statement that cannot be accessed outside that scope.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'qvXTcr1XDdEQ',
       color: '#00BCD4'
     },
     {
       term: 'Logical AND Operator',
       difficulty: 'Intermediate',
       definition: 'The && operator combines two Boolean values and is true only when both values are true.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'AwQIMyVHT-c',
       color: '#E53935'
     },
     {
       term: 'Logical NOT Operator',
       difficulty: 'Intermediate',
       definition: 'The ! operator inverts a Boolean value, changing true to false and false to true.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'zlY1i4MA-to',
       color: '#00BCD4'
     },
     {
       term: 'Logical Operator',
       difficulty: 'Intermediate',
       definition: 'A symbol such as &&, ||, or ! that modifies or combines Boolean values.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '12ygXhuxwJs',
       color: '#E53935'
     },
     {
       term: 'Logical OR Operator',
       difficulty: 'Intermediate',
       definition: 'The || operator combines two Boolean values and is true if at least one value is true.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'YAxfd0ztjQc',
       color: '#00BCD4'
     },
     {
@@ -468,28 +468,28 @@ export const curriculumContent = {
       term: 'Nest',
       difficulty: 'Intermediate',
       definition: 'To place one loop or statement inside another.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'W76Z6MpgZNQ',
       color: '#00BCD4'
     },
     {
       term: 'Operator',
       difficulty: 'Beginner',
       definition: 'A symbol, such as +, -, or &&, that represents an action on one or more values.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '4a8fPYdVZc8',
       color: '#E53935'
     },
     {
       term: 'Outer Loop',
       difficulty: 'Intermediate',
       definition: 'A loop that contains another loop inside it.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'QZrxwf41KhY',
       color: '#00BCD4'
     },
     {
       term: 'Parameter',
       difficulty: 'Beginner',
       definition: 'The named input in a function definition that receives a value when the function is called.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'JP6mZ1wBJ0w',
       color: '#E53935'
     },
     {
@@ -518,7 +518,7 @@ export const curriculumContent = {
       term: 'Reusability',
       difficulty: 'Intermediate',
       definition: 'A characteristic of code that allows it to be used in different situations in an application.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'BeuiP38OnMQ',
       color: '#E53935'
     },
     {
@@ -526,7 +526,7 @@ export const curriculumContent = {
       difficulty: 'Intermediate',
       definition:
         'A maze-solving rule where a character follows along the wall on its right-hand side.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '4BO9PmavqU8',
       color: '#00BCD4'
     },
     {
@@ -540,7 +540,7 @@ export const curriculumContent = {
       term: 'State',
       difficulty: 'Beginner',
       definition: 'The stored information of a variable, application, or system at a given time.',
-      videoId: 'clQYDDxoevI?si=JdBz-NbToMrX7IoN',
+      videoId: 'f7_1rFCsJbw',
       color: '#E53935'
     },
     {
@@ -583,7 +583,7 @@ export const curriculumContent = {
       term: 'While Loop',
       difficulty: 'Beginner',
       definition: 'A block of code that runs as long as a condition is true and stops when it becomes false.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'L0LNFNEYxgo',
       color: '#E53935'
     },
     {
@@ -591,7 +591,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'An outline of an item in the puzzle world used to indicate that it may randomly appear each time the puzzle runs.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'P07IAu2QAgQ',
       color: '#00BCD4'
     }
   ],
