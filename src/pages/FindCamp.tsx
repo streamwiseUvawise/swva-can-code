@@ -1,32 +1,163 @@
 import { useState } from 'react';
-import { Calendar, MapPin, Users, Clock, ArrowRight, Search } from 'lucide-react';
+import { Calendar, MapPin, Clock, Search } from 'lucide-react';
 import { findCampContent } from '../data/findCampContent';
 
 export function FindCamp() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [ageFilter, setAgeFilter] = useState('all');
-  const [locationFilter, setLocationFilter] = useState('all');
+  const [levelFilter, setLevelFilter] = useState('all');
+  const [countyFilter, setCountyFilter] = useState('all');
 
   const camps = findCampContent.camps;
-  const ageOptions = [...new Set(camps.map((camp) => camp.ageRange))].sort();
-  const locationOptions = [...new Set(camps.map((camp) => camp.location))].sort((a, b) =>
+  const levelOptions = ['MS(5-8)', 'HS(9-12)', 'CC(1-3)', 'CC(4-6)'];
+  const normalizeKey = (value?: string) =>
+    (value || '')
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .trim();
+
+  const normalizeCountyKey = (value?: string) => normalizeKey(value).replace(/\bcounty\b/g, '').trim();
+  const normalizeLevelKey = (value?: string) => normalizeKey(value).replace(/\s+/g, '');
+
+  const getCampCounty = (camp: (typeof camps)[number]) => {
+    const explicitCounty = camp.county?.trim();
+    if (explicitCounty) return explicitCounty;
+
+    const titleAndLocation = `${camp.title} ${camp.location || ''}`;
+    if (/uvawise|streamwise/i.test(titleAndLocation)) {
+      return 'Wise County';
+    }
+
+    return (camp.location || '').split(',')[0].trim();
+  };
+
+  const countyOptions = [...new Set(camps.map((camp) => getCampCounty(camp)).filter(Boolean))].sort((a, b) =>
     a.localeCompare(b)
   );
 
   const filteredCamps = camps.filter((camp) => {
-    const normalizedSearch = searchTerm.trim().toLowerCase();
+    const normalizedSearch = normalizeKey(searchTerm);
     const searchMatches =
       normalizedSearch.length === 0 ||
-      camp.title.toLowerCase().includes(normalizedSearch) ||
-      camp.location.toLowerCase().includes(normalizedSearch) ||
-      camp.description.toLowerCase().includes(normalizedSearch) ||
-      camp.date.toLowerCase().includes(normalizedSearch);
+      normalizeKey(camp.title).includes(normalizedSearch) ||
+      normalizeKey(camp.location).includes(normalizedSearch) ||
+      normalizeKey(camp.county).includes(normalizedSearch) ||
+      normalizeKey(camp.date).includes(normalizedSearch) ||
+      normalizeKey(camp.time).includes(normalizedSearch);
 
-    const ageMatches = ageFilter === 'all' || camp.ageRange === ageFilter;
-    const locationMatches = locationFilter === 'all' || camp.location === locationFilter;
+    const ageMatches = true; // kept for compatibility if needed elsewhere
+    const levelMatches = levelFilter === 'all' || normalizeLevelKey(camp.level) === normalizeLevelKey(levelFilter);
+    const countyMatches = countyFilter === 'all' || normalizeCountyKey(getCampCounty(camp)) === normalizeCountyKey(countyFilter);
 
-    return searchMatches && ageMatches && locationMatches;
+    return searchMatches && levelMatches && countyMatches;
   });
+
+  // Sort camps: chronological (if parseable) → level (MS, HS, CC(1-3), CC(4-6)) → title
+  const levelOrder = ['MS(5-8)', 'HS(9-12)', 'CC(1-3)', 'CC(4-6)'];
+
+  function parseDateToTimestamp(dateStr?: string) {
+    if (!dateStr) return Infinity;
+    const m = dateStr.match(/(January|February|March|April|May|June|July|August|September|October|November|December)/i);
+    const y = dateStr.match(/(20\d{2})/);
+    const monthMap: Record<string, number> = {
+      january: 0,
+      february: 1,
+      march: 2,
+      april: 3,
+      may: 4,
+      june: 5,
+      july: 6,
+      august: 7,
+      september: 8,
+      october: 9,
+      november: 10,
+      december: 11
+    };
+    if (y) {
+      const year = parseInt(y[1], 10);
+      if (m) {
+        const month = monthMap[m[1].toLowerCase()] ?? 0;
+        return new Date(year, month, 1).getTime();
+      }
+      return new Date(year, 0, 1).getTime();
+    }
+    return Infinity;
+  }
+
+  const sortedCamps = [...filteredCamps].sort((a, b) => {
+    const ta = parseDateToTimestamp(a.date);
+    const tb = parseDateToTimestamp(b.date);
+    if (ta !== tb) return ta - tb;
+    const la = levelOrder.findIndex((level) => normalizeLevelKey(level) === normalizeLevelKey(a.level));
+    const lb = levelOrder.findIndex((level) => normalizeLevelKey(level) === normalizeLevelKey(b.level));
+    if (la !== lb) return la - lb;
+    return a.title.localeCompare(b.title);
+  });
+
+  function formatNameFromEmail(email?: string) {
+    if (!email) return '';
+
+    const local = email.split('@')[0]?.trim() || '';
+    if (!local) return '';
+
+    const blockedPrefixes = ['info', 'admin', 'support', 'contact', 'office', 'district', 'camp', 'noreply', 'no-reply'];
+    if (blockedPrefixes.includes(local.toLowerCase())) {
+      return '';
+    }
+
+    const tokens = local.split(/[._-]+/).filter(Boolean);
+    if (tokens.length >= 2) {
+      return tokens
+        .map((part) => part.replace(/\d+/g, '').trim())
+        .filter(Boolean)
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+        .join(' ');
+    }
+
+    return '';
+  }
+
+  function renderContactDetails(
+    roleLabel: string,
+    contact?: { label: string; value: string },
+    phone?: string,
+    customName?: string
+  ) {
+    const name = customName?.trim() || formatNameFromEmail(contact?.value);
+    const email = contact?.value || '';
+    const normalizedPhone = phone || '';
+
+    return (
+      <>
+        {name && (
+          <div className="flex items-center gap-2">
+            <span className="font-medium">{roleLabel}:</span>
+            <span className="text-[#1A237E]/70">{name}</span>
+          </div>
+        )}
+
+        {email && (
+          <div className="flex items-center gap-2">
+            <span className="font-medium">{roleLabel} email:</span>
+            <a href={`mailto:${email}`} className="text-[#1A237E]/70 hover:text-[#1A237E]">
+              {email}
+            </a>
+          </div>
+        )}
+
+        {normalizedPhone && (
+          <div className="flex items-center gap-2">
+            <span className="font-medium">{roleLabel} phone:</span>
+            <a
+              href={`tel:${normalizedPhone.replace(/[^\d+]/g, '')}`}
+              className="text-[#1A237E]/70 hover:text-[#1A237E]"
+            >
+              {normalizedPhone}
+            </a>
+          </div>
+        )}
+      </>
+    );
+  }
 
   return (
     <div>
@@ -56,30 +187,30 @@ export function FindCamp() {
               />
             </div>
 
-            {/* Age Filter */}
+            {/* Level Filter */}
             <select
-              value={ageFilter}
-              onChange={(e) => setAgeFilter(e.target.value)}
+              value={levelFilter}
+              onChange={(e) => setLevelFilter(e.target.value)}
               className="px-4 py-2 border border-[#1A237E]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00BCD4] text-[#1A237E]"
             >
-              <option value="all">All Ages</option>
-              {ageOptions.map((age) => (
-                <option key={age} value={age}>
-                  Ages {age}
+              <option value="all">All Levels</option>
+              {levelOptions.map((level) => (
+                <option key={level} value={level}>
+                  {level}
                 </option>
               ))}
             </select>
 
-            {/* Location Filter */}
+            {/* County Filter */}
             <select
-              value={locationFilter}
-              onChange={(e) => setLocationFilter(e.target.value)}
+              value={countyFilter}
+              onChange={(e) => setCountyFilter(e.target.value)}
               className="px-4 py-2 border border-[#1A237E]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00BCD4] text-[#1A237E]"
             >
-              <option value="all">All Locations</option>
-              {locationOptions.map((location) => (
-                <option key={location} value={location}>
-                  {location}
+              <option value="all">All Counties</option>
+              {countyOptions.map((county) => (
+                <option key={county} value={county}>
+                  {county}
                 </option>
               ))}
             </select>
@@ -88,8 +219,8 @@ export function FindCamp() {
             <button
               onClick={() => {
                 setSearchTerm('');
-                setAgeFilter('all');
-                setLocationFilter('all');
+                setLevelFilter('all');
+                setCountyFilter('all');
               }}
               className="px-6 py-2 bg-[#F5F3EE] text-[#1A237E] rounded-lg hover:bg-[#E0DED8] transition-colors font-medium"
             >
@@ -111,76 +242,96 @@ export function FindCamp() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCamps.map((camp) => (
-              <div
-                key={camp.id}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden border-t-4"
-                style={{ borderColor: camp.color }}
-              >
-                <div className="p-6">
-                  {/* Badge */}
-                  <div className="mb-4">
-                    {camp.spots === 'Limited spots available' ? (
-                      <span className="inline-block px-3 py-1 bg-[#E53935]/10 text-[#E53935] text-sm font-medium rounded-full">
-                        {camp.spots}
-                      </span>
-                    ) : (
-                      <span className="inline-block px-3 py-1 bg-[#00BCD4]/10 text-[#00BCD4] text-sm font-medium rounded-full">
-                        {camp.spots}
-                      </span>
-                    )}
-                  </div>
+            {sortedCamps.map((camp) => {
+              const districtContact = camp.contacts?.find((c) =>
+                /superintendent|district|kil|tech director/i.test(c.label?.trim() || '')
+              );
+              const campLeader = camp.contacts?.find((c) =>
+                /camp\s*lead(er)?|camp lead/i.test(c.label?.trim() || '')
+              );
+              const additional = camp.contacts
+                ? camp.contacts.filter((c) => c !== districtContact && c !== campLeader)
+                : [];
+              const districtContactPhone = (camp as { districtContactPhone?: string }).districtContactPhone || '';
+              const districtContactName = (camp as { districtContactName?: string }).districtContactName || '';
+              const campLeadPhone = camp.leaderPhone || '';
+              const campLeadName = (camp as { leaderName?: string }).leaderName || '';
 
-                  {/* Title */}
-                  <h3 className="text-[#1A237E] mb-3">{camp.title}</h3>
+              return (
+                <div
+                  key={camp.id}
+                  className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden border-t-4"
+                  style={{ borderColor: camp.color }}
+                >
+                  <div className="p-6">
+                    <div className="mb-4">
+                      {camp.spots === 'Limited spots available' ? (
+                        <span className="inline-block px-3 py-1 bg-[#E53935]/10 text-[#E53935] text-sm font-medium rounded-full">
+                          {camp.spots}
+                        </span>
+                      ) : (
+                        <span className="inline-block px-3 py-1 bg-[#00BCD4]/10 text-[#00BCD4] text-sm font-medium rounded-full">
+                          {camp.spots}
+                        </span>
+                      )}
+                    </div>
 
-                  {/* Description */}
-                  <p className="text-[#1A237E]/70 text-sm mb-6">{camp.description}</p>
+                    <h3 className="text-[#1A237E] mb-3">{camp.title}</h3>
 
-                  {/* Info Grid */}
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center gap-2 text-[#1A237E]/70 text-sm">
-                      <Calendar className="w-4 h-4" style={{ color: camp.color }} />
-                      <span>{camp.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[#1A237E]/70 text-sm">
-                      <MapPin className="w-4 h-4" style={{ color: camp.color }} />
-                      <span>{camp.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[#1A237E]/70 text-sm">
-                      <Users className="w-4 h-4" style={{ color: camp.color }} />
-                      <span>Ages {camp.ageRange}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[#1A237E]/70 text-sm">
-                      <Clock className="w-4 h-4" style={{ color: camp.color }} />
-                      <span>{camp.duration}</span>
-                    </div>
-                  </div>
+                    <div className="space-y-2 text-sm text-[#1A237E]/80 mb-4">
+                      {renderContactDetails('District Contact', districtContact, districtContactPhone, districtContactName)}
 
-                  {/* Camp Contacts */}
-                  {camp.contacts && camp.contacts.length > 0 && (
-                    <div className="border-t border-[#1A237E]/10 pt-4 space-y-2">
-                      <div className="text-xs uppercase tracking-[0.2em] text-[#1A237E]/60">
-                        Camp Contacts
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium">Camp Level:</span>
+                        <span className="text-[#1A237E]/70">{camp.level || 'TBD'}</span>
                       </div>
-                      <div className="space-y-1 text-sm text-[#1A237E]/70">
-                        {camp.contacts.map((contact) => (
-                          <div key={`${camp.id}-${contact.label}`}> 
-                            <span className="text-[#1A237E] font-medium">{contact.label}:</span>{' '}
-                            <a
-                              href={`mailto:${contact.value}`}
-                              className="text-[#1A237E]/70 hover:text-[#1A237E]"
-                            >
-                              {contact.value}
-                            </a>
+
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" style={{ color: camp.color }} />
+                        <span>{camp.date || 'Dates TBD'}</span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4" style={{ color: camp.color }} />
+                        <span>{camp.time || 'Time TBD'}</span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4" style={{ color: camp.color }} />
+                        <span>{camp.location || camp.county || 'Location TBD'}</span>
+                      </div>
+
+                      {renderContactDetails('Camp Lead', campLeader, campLeadPhone, campLeadName)}
+
+                      {additional.length > 0 && (
+                        <div>
+                          <div className="font-medium">Additional Personnel:</div>
+                          <div className="mt-1 space-y-1 text-[#1A237E]/70">
+                            {additional.map((p) => (
+                              <div key={`${camp.id}-${p.label}`} className="space-y-1">
+                                {renderContactDetails(p.label, p)}
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      )}
+
+                      {(camp.registration || camp.directions) && (
+                        <div className="mt-3">
+                          {camp.registration && (
+                            <a href={camp.registration} className="inline-block px-4 py-2 bg-[#00BCD4] text-white rounded-lg mr-2">Register</a>
+                          )}
+                          {camp.directions && (
+                            <a href={camp.directions} className="inline-block px-4 py-2 bg-[#1A237E] text-white rounded-lg">Directions</a>
+                          )}
+                        </div>
+                      )}
+
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {filteredCamps.length === 0 && (
