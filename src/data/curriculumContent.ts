@@ -270,7 +270,7 @@ export const curriculumContent = {
       term: 'Composition',
       difficulty: 'Intermediate',
       definition: 'The process of combining small parts of an application to solve a larger problem.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'g_IA4DxdH0s',
       color: '#00BCD4'
     },
     {
@@ -301,14 +301,14 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A piece of code that creates something new in your application, such as a function, variable, or custom type.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'DXapwn-jYks',
       color: '#E53935'
     },
     {
       term: 'Decomposition',
       difficulty: 'Intermediate',
       definition: 'The process of breaking a large problem into smaller, more manageable pieces.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'g_IA4DxdH0s',
       color: '#00BCD4'
     },
     {
@@ -316,7 +316,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'To provide the explicit value or behavior of a newly created piece of code, such as a function, variable, or custom type.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'TUobZKkzSO8',
       color: '#E53935'
     },
     {
@@ -324,7 +324,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'A syntax style used to access properties or call methods on an instance, such as expert.toggleSwitch().',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'yP9YynnZkc8',
       color: '#00BCD4'
     },
     {
@@ -461,7 +461,7 @@ export const curriculumContent = {
       term: 'Method',
       difficulty: 'Intermediate',
       definition: 'A function that is defined inside a type.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '_PquzIAnYOQ',
       color: '#E53935'
     },
     {
@@ -496,14 +496,14 @@ export const curriculumContent = {
       term: 'Pattern',
       difficulty: 'Beginner',
       definition: 'A repeating set of circumstances or data.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'oFZTKX_GgBY',
       color: '#00BCD4'
     },
     {
       term: 'Property',
       difficulty: 'Beginner',
       definition: 'A variable defined inside a type that stores part of that type\'s data.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'lfI9f2IoK8Y',
       color: '#E53935'
     },
     {
@@ -511,7 +511,7 @@ export const curriculumContent = {
       difficulty: 'Beginner',
       definition:
         'An easy-to-read description of an algorithm, often written in a mix of everyday language and code-like structure.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'mfhumJzVQEI',
       color: '#00BCD4'
     },
     {
@@ -576,7 +576,7 @@ export const curriculumContent = {
       term: 'Type',
       difficulty: 'Beginner',
       definition: 'A named grouping of properties and methods that describes a kind of data.',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '_PquzIAnYOQ',
       color: '#00BCD4'
     },
     {
