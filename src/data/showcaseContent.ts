@@ -72,7 +72,7 @@ export const showcaseContent = {
       'Students from all over SWVA are rising to the challenge this summer to develop an app prototype that addresses a key economic or community need.'
   },
   eventDetails: {
-    dateAndVenue: 'July 2026 @ the David J. Prior Convocation Center',
+    dateAndVenue: 'August 2026 @ the David J. Prior Convocation Center',
     campus: "on the Campus of The University of Virginia's College at Wise",
     celebrationTitle: 'Celebrating Student Achievements!',
     posterSessionText:
