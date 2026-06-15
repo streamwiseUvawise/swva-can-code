@@ -29,3 +29,9 @@ For sponsorship updates:
 - Sponsor logos list: `src/data/sponsorContent.ts` → `sponsors.items`
 - Sponsorship packet filename: `src/data/sponsorContent.ts` → `packet.pdfFileName`
 - Sponsor logo and packet assets folder: `src/assets/sponsor logo/`
+
+
+## Push to main
+ git add .
+ git commit -m "log message"
+ git push origin main
