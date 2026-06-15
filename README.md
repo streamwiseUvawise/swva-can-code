@@ -35,3 +35,8 @@ For sponsorship updates:
  git add .
  git commit -m "log message"
  git push origin main
+
+ ## before getting out of the codespace 
+
+ use this command
+ gh codespace stop
