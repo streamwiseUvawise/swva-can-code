@@ -29,3 +29,10 @@ For sponsorship updates:
 - Sponsor logos list: `src/data/sponsorContent.ts` → `sponsors.items`
 - Sponsorship packet filename: `src/data/sponsorContent.ts` → `packet.pdfFileName`
 - Sponsor logo and packet assets folder: `src/assets/sponsor logo/`
+
+For Showcase updates:
+- Event photos: `src/assets/showcase/`
+- Student project images and exported poster PDFs: `src/assets/student-projects/`
+- Event photos appear only in the Showcase gallery.
+- Student project uploads appear only in the Student Projects section.
+- Student project cards and details: `src/data/showcaseContent.ts`

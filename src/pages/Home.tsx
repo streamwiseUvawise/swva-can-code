@@ -21,7 +21,7 @@ export function Home() {
     ages: `Ages ${camp.ageRange}`,
     color: camp.color
   }));
-  const galleryPreview = showcaseContent.gallery.images.slice(0, 4);
+  const galleryPreview = showcaseContent.gallery.images.filter((image) => image.type === 'image').slice(0, 4);
 
   return (
     <div>

@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import { ExternalLink, Code, Palette, Trophy, Calendar, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { showcaseContent } from '../data/showcaseContent';
 
 export function Showcase() {
   const { gallery, projects, stats, submitCta, eventDetails } = showcaseContent;
+  const [selectedFilter, setSelectedFilter] = useState('All Projects');
+  const visibleProjects = selectedFilter === 'All Projects'
+    ? projects
+    : projects.filter((project) => project.type === selectedFilter);
 
   return (
     <div>
@@ -46,8 +51,10 @@ export function Showcase() {
             {showcaseContent.filterTags.map((tag, index) => (
               <button
                 key={`${tag}-${index}`}
+                type="button"
+                onClick={() => setSelectedFilter(tag)}
                 className={
-                  index === 0
+                  selectedFilter === tag
                     ? 'px-4 py-2 bg-[#00BCD4] text-white rounded-full text-sm font-medium hover:bg-[#00ACC1] transition-colors'
                     : 'px-4 py-2 bg-[#F5F3EE] text-[#1A237E] rounded-full text-sm font-medium hover:bg-[#E0DED8] transition-colors'
                 }
@@ -62,34 +69,47 @@ export function Showcase() {
       {/* Projects Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {projects.length === 0 ? (
+          {visibleProjects.length === 0 ? (
             <div className="max-w-3xl mx-auto bg-[#F5F3EE] border border-[#1A237E]/10 rounded-xl p-8 text-center">
-              <h3 className="text-[#1A237E] mb-2">Projects Coming Soon</h3>
-              <p className="text-[#1A237E]/70">{showcaseContent.projectsEmptyMessage}</p>
+              <h3 className="text-[#1A237E] mb-2">
+                {projects.length === 0 ? 'Projects Coming Soon' : 'No Projects In This Category'}
+              </h3>
+              <p className="text-[#1A237E]/70">
+                {projects.length === 0
+                  ? showcaseContent.projectsEmptyMessage
+                  : 'Choose another project category to see more student work.'}
+              </p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project) => (
+              {visibleProjects.map((project) => (
                 <div
                   key={project.id}
                   className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden group"
                 >
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden bg-gray-200">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-[#00BCD4] text-white text-sm font-medium rounded-full">
-                      Age {project.age}
-                    </div>
+                    {project.mediaType === 'pdf' ? (
+                      <iframe
+                        src={project.image}
+                        title={project.title}
+                        className="w-full h-full border-0"
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    )}
                   </div>
 
                   {/* Project Info */}
                   <div className="p-6">
                     <h3 className="text-[#1A237E] mb-2">{project.title}</h3>
-                    <p className="text-[#00BCD4] text-sm font-medium mb-3">By {project.student}</p>
+                    <p className="text-[#00BCD4] text-sm font-medium mb-3">
+                      {project.type} · By {project.student}
+                    </p>
                     <p className="text-[#1A237E]/70 text-sm mb-4">{project.description}</p>
 
                     {/* Skills Tags */}
@@ -116,9 +136,15 @@ export function Showcase() {
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     ) : (
-                      <div className="w-full py-2 bg-[#F5F3EE] text-[#1A237E]/60 rounded-lg font-medium flex items-center justify-center gap-2">
-                        Showcase Link Coming Soon
-                      </div>
+                      <a
+                        href={project.image}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2 bg-[#F5F3EE] text-[#1A237E] rounded-lg font-medium hover:bg-[#E0DED8] transition-colors flex items-center justify-center gap-2"
+                      >
+                        Open Full {project.mediaType === 'pdf' ? 'PDF' : 'Image'}
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
                     )}
                   </div>
                 </div>
@@ -144,11 +170,19 @@ export function Showcase() {
             {gallery.images.map((image, index) => (
               <div key={`${image.src}-${index}`} className="bg-white rounded-xl overflow-hidden shadow-md">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className={`w-full h-full ${image.fit === 'contain' ? 'object-contain bg-white p-2' : 'object-cover'}`}
-                  />
+                  {image.type === 'pdf' ? (
+                    <iframe
+                      src={image.src}
+                      title={image.alt}
+                      className="w-full h-full border-0"
+                    />
+                  ) : (
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className={`w-full h-full ${image.fit === 'contain' ? 'object-contain bg-white p-2' : 'object-cover'}`}
+                    />
+                  )}
                 </div>
               </div>
             ))}

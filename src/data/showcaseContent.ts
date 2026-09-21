@@ -5,10 +5,36 @@ const excludedShowcaseAssetNames = new Set([
   'swift.svg'
 ]);
 
-const showcaseAssetModules = import.meta.glob('../assets/showcase/*.{png,jpg,jpeg,avif,webp,gif}', {
+const showcaseAssetModules = import.meta.glob('../assets/showcase/*.{png,jpg,jpeg,avif,webp,gif,pdf,PNG,JPG,JPEG,AVIF,WEBP,GIF,PDF}', {
   eager: true,
   import: 'default'
 }) as Record<string, string>;
+
+const studentProjectAssetModules = import.meta.glob('../assets/student-projects/*.{png,jpg,jpeg,avif,webp,gif,pdf,PNG,JPG,JPEG,AVIF,WEBP,GIF,PDF}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>;
+
+function buildProjectTitle(fileName: string) {
+  return fileName
+    .replace(/\.(avif|webp|png|jpe?g|gif|pdf)$/i, '')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function inferProjectType(title: string): ShowcaseProjectType {
+  if (/game/i.test(title)) {
+    return 'Games';
+  }
+  if (/web|website/i.test(title)) {
+    return 'Websites';
+  }
+  if (/art|animation/i.test(title)) {
+    return 'Art & Animation';
+  }
+  return 'Apps';
+}
 
 const showcaseImageOverrides: Array<{
   matcher: (fileName: string) => boolean;
@@ -26,7 +52,7 @@ const showcaseImageOverrides: Array<{
 
 function buildGalleryAltText(fileName: string) {
   let label = fileName
-    .replace(/\.(avif|webp|png|jpe?g|gif)$/i, '')
+    .replace(/\.(avif|webp|png|jpe?g|gif|pdf)$/i, '')
     .replace(/\.(png|jpe?g|webp|gif)$/i, '')
     .replace(/-[A-Za-z0-9]{8,}$/, '')
     .replace(/[_-]+/g, ' ')
@@ -50,6 +76,7 @@ const showcaseGalleryImages = Object.entries(showcaseAssetModules)
     const override = showcaseImageOverrides.find((item) => item.matcher(fileName));
     return {
       src,
+      type: /\.pdf$/i.test(fileName) ? 'pdf' : 'image',
       alt: override?.alt ?? buildGalleryAltText(fileName),
       fit: override?.fit ?? 'cover',
       priority: override?.priority ?? 0,
@@ -62,7 +89,26 @@ const showcaseGalleryImages = Object.entries(showcaseAssetModules)
     }
     return left.fileName.localeCompare(right.fileName);
   })
-  .map(({ src, alt, fit }) => ({ src, alt, fit }));
+  .map(({ src, type, alt, fit }) => ({ src, type, alt, fit }));
+
+export type ShowcaseProjectType = 'Games' | 'Websites' | 'Apps' | 'Art & Animation';
+
+const uploadedStudentProjects = Object.entries(studentProjectAssetModules)
+  .map(([path, src], index) => {
+    const fileName = path.split('/').pop() ?? '';
+    const title = buildProjectTitle(fileName);
+    return {
+      id: index + 1,
+      title,
+      type: inferProjectType(title),
+      student: 'SWVA Can Code student project',
+      description: 'Student project materials uploaded by the SWVA Can Code team.',
+      skills: [],
+      image: src,
+      mediaType: /\.pdf$/i.test(fileName) ? 'pdf' as const : 'image' as const
+    };
+  })
+  .sort((left, right) => left.title.localeCompare(right.title));
 
 // Editable content for the Showcase page.
 export const showcaseContent = {
@@ -81,12 +127,12 @@ export const showcaseContent = {
       'The top projects from each camp will be invited to pitch their prototypes in a rapid-fire pitch competition for prizes and accolades!'
   },
   filterTags: ['All Projects', 'Games', 'Websites', 'Apps', 'Art & Animation'],
-  // TODO (after next camp): Replace demo entries below with real student projects.
-  // Keep each object shape the same so the existing Showcase grid design continues to work.
+  // Add optional student details to uploaded project entries when they are available.
   // Example template:
   // {
   //   id: 101,
   //   title: 'Project Title',
+  //   type: 'Apps',
   //   student: 'Student Name',
   //   age: 14,
   //   description: '1-2 sentence summary of the project and problem solved.',
@@ -94,14 +140,15 @@ export const showcaseContent = {
   //   image: 'https://...',
   //   projectUrl: 'https://...' // optional (leave blank if no link yet)
   // }
-  projects: [] as Array<{
+  projects: uploadedStudentProjects as Array<{
     id: number;
     title: string;
+    type: ShowcaseProjectType;
     student: string;
-    age: number;
     description: string;
     skills: string[];
     image: string;
+    mediaType: 'image' | 'pdf';
     projectUrl?: string;
   }>,
   projectsEmptyMessage: 'Student project highlights will be posted here after camp judging is complete.',

@@ -113,6 +113,7 @@ Find the `projects: []` section and add items like this:
 {
   id: 1,
   title: 'Flood Alert App',
+  type: 'Apps',
   student: 'Jordan Smith',
   age: 14,
   description: 'An app prototype that alerts families when roads may flood.',
@@ -124,11 +125,18 @@ Find the `projects: []` section and add items like this:
 
 Tips:
 - Keep each `id` unique (`1`, `2`, `3`, etc.)
+- Set `type` to exactly one of `Games`, `Websites`, `Apps`, or `Art & Animation`. This is what puts the project in the correct Showcase filter.
 - If you do not have a project link yet, delete `projectUrl` or leave it out
 - Keep the same punctuation style (commas and quotes)
 
-#### 3) Add or replace gallery photos
-Find `gallery.images` and update each image item:
+#### 3) Add gallery photos or Keynote posters
+Photos and posters are separate from project cards. Place event photos in `/src/assets/showcase`; they appear only in the Showcase gallery. Place student project images and exported poster PDFs in `/src/assets/student-projects`; they appear only in the Student Projects section.
+
+For a Keynote poster, export it from Keynote as a **PDF** (this preserves the poster layout and text), then place the `.pdf` file in `/src/assets/student-projects`. The poster will appear automatically as a student project card and visitors can read it in the browser. A `.key` file cannot be displayed by web browsers. The project’s category is inferred from the filename when possible and can be set explicitly with the `type` field above.
+
+Use short, descriptive filenames such as `flood-alert-poster.pdf` or `camp-poster-session-01.jpg`; filenames are used to create the default alt text.
+
+For manually curated gallery items, find `gallery.images` and update each image item:
 
 ```ts
 {

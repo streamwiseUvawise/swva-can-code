@@ -42,6 +42,8 @@ Build artifacts are generated into `/build`.
   - `/src/components` - shared layout/content components and docs-route components
   - `/src/data` - editable page content objects (preferred place for text/list updates)
   - `/src/assets` - local static assets used by bundler (images, logos, sponsor packet)
+    - `/src/assets/showcase` - event photos and general Showcase media
+    - `/src/assets/student-projects` - student project images and exported poster PDFs
   - `/src/styles` - additional style files (if used)
   - `/src/lib` - utility folder (currently minimal)
 - `/public` - static files served directly (including curriculum PDFs)
@@ -149,6 +151,10 @@ UI primitives in `/src/components/ui` are reusable UI building blocks.
 ### Website image assets
 - Main app assets: `/src/assets`
 - Sponsor images and packet: `/src/assets/sponsor logo`
+- Showcase event photos: `/src/assets/showcase`
+- Student project images and exported Keynote posters: `/src/assets/student-projects`
+
+Showcase image files (`.png`, `.jpg`, `.jpeg`, `.avif`, `.webp`, `.gif`) in `/src/assets/showcase` are included automatically in the gallery. Files in `/src/assets/student-projects` are converted into Student Projects cards; PDFs are displayed in-browser so their original layout and text remain intact. Native `.key` files are not browser-displayable. Project categories are inferred from filenames when possible and can be set explicitly on project entries (`Games`, `Websites`, `Apps`, or `Art & Animation`).
 
 ### Curriculum PDFs
 - Source/public delivery path: `/public/curriculum`
