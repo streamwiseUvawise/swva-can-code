@@ -30,9 +30,22 @@ For sponsorship updates:
 - Sponsorship packet filename: `src/data/sponsorContent.ts` → `packet.pdfFileName`
 - Sponsor logo and packet assets folder: `src/assets/sponsor logo/`
 
+<<<<<<< HEAD
 For Showcase updates:
 - Event photos: `src/assets/showcase/`
 - Student project images and exported poster PDFs: `src/assets/student-projects/`
 - Event photos appear only in the Showcase gallery.
 - Student project uploads appear only in the Student Projects section.
 - Student project cards and details: `src/data/showcaseContent.ts`
+=======
+
+## Push to main
+ git add .
+ git commit -m "log message"
+ git push origin main
+
+ ## before getting out of the codespace 
+
+ use this command
+ gh codespace stop
+>>>>>>> c6219a2caf991f3f0c6fb2648dc62a61fd1d9cde
