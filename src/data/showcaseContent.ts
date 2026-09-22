@@ -15,6 +15,11 @@ const studentProjectAssetModules = import.meta.glob('../assets/student-projects/
   import: 'default'
 }) as Record<string, string>;
 
+const winnerAssetModules = import.meta.glob('../assets/winners/**/*.{png,jpg,jpeg,avif,webp,gif,PNG,JPG,JPEG,AVIF,WEBP,GIF}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>;
+
 function buildProjectTitle(fileName: string) {
   return fileName
     .replace(/\.(avif|webp|png|jpe?g|gif|pdf)$/i, '')
@@ -108,7 +113,32 @@ const uploadedStudentProjects = Object.entries(studentProjectAssetModules)
       mediaType: /\.pdf$/i.test(fileName) ? 'pdf' as const : 'image' as const
     };
   })
-  .sort((left, right) => left.title.localeCompare(right.title));
+  .sort((left, right) => left.title.localeCompare(right.title))
+  .filter((project, index, projects) => (
+    index === projects.findIndex((candidate) => candidate.title.toLowerCase() === project.title.toLowerCase())
+  ));
+
+const uploadedWinners = Object.entries(winnerAssetModules)
+  .map(([path, src]) => {
+    const pathParts = path.split('/');
+    const fileName = pathParts.pop() ?? '';
+    const folderYear = pathParts.pop() ?? '';
+    const year = /^\d{4}$/.test(folderYear)
+      ? folderYear
+      : fileName.match(/(?:^|\D)(\d{4})(?:\D|$)/)?.[1] ?? '';
+    return {
+      src,
+      year,
+      title: buildProjectTitle(fileName),
+      alt: `SWVA Can Code ${year} winner: ${buildProjectTitle(fileName)}`,
+      fileName
+    };
+  })
+  .filter((winner) => /^\d{4}$/.test(winner.year))
+  .sort((left, right) => {
+    const yearOrder = Number(right.year) - Number(left.year);
+    return yearOrder || left.fileName.localeCompare(right.fileName);
+  });
 
 // Editable content for the Showcase page.
 export const showcaseContent = {
@@ -152,6 +182,12 @@ export const showcaseContent = {
     projectUrl?: string;
   }>,
   projectsEmptyMessage: 'Student project highlights will be posted here after camp judging is complete.',
+  winners: {
+    title: 'Regional Showcase Winners',
+    description: 'Celebrate the student teams whose ideas stood out at each regional showcase.',
+    images: uploadedWinners,
+    emptyMessage: 'Winner photos will be added here after each regional showcase. Add them to src/assets/winners/<year>/. '
+  },
   gallery: {
     title: 'Student Showcase Gallery',
     // TODO (after next camp): Curate final event photos here.
