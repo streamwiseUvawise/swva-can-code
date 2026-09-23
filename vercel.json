@@ -2,6 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "framework": "vite",
+  "env": {
+    "VITE_FORMSPREE_ENDPOINT": "https://formspree.io/f/xreajoyw"
+  },
   "rewrites": [
     {
       "source": "/(.*)",
