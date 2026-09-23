@@ -49,6 +49,67 @@ export function Showcase() {
         </div>
       </section>
 
+      {/* Regional Showcase Winners */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <Trophy className="w-7 h-7 text-[#E53935]" />
+                <h2 className="text-[#1A237E]">{winners.title}</h2>
+              </div>
+              <p className="text-[#1A237E]/70 text-lg max-w-2xl">{winners.description}</p>
+            </div>
+            {winnerYears.length > 0 && (
+              <div className="flex flex-wrap gap-2" aria-label="Filter winners by year">
+                {['All Years', ...winnerYears].map((year) => (
+                  <button
+                    key={year}
+                    type="button"
+                    onClick={() => setSelectedWinnerYear(year)}
+                    className={selectedWinnerYear === year
+                      ? 'px-4 py-2 bg-[#E53935] text-white rounded-full text-sm font-medium hover:bg-[#D32F2F] transition-colors'
+                      : 'px-4 py-2 bg-[#F5F3EE] text-[#1A237E] rounded-full text-sm font-medium hover:bg-[#E0DED8] transition-colors'}
+                  >
+                    {year}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {visibleWinners.length === 0 ? (
+            <div className="bg-[#F5F3EE] border border-[#1A237E]/10 rounded-xl p-8 text-center text-[#1A237E]/70">
+              {winners.emptyMessage}
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {visibleWinners.map((winner) => (
+                <a
+                  key={`${winner.year}-${winner.fileName}`}
+                  href={winner.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-[#F5F3EE] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-white">
+                    <img
+                      src={winner.src}
+                      alt={winner.alt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-sm font-bold text-[#E53935]">{winner.year}</p>
+                    <h3 className="text-[#1A237E] mt-1">{winner.title}</h3>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* Filter Tags */}
       <section className="bg-white py-8 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -153,67 +214,6 @@ export function Showcase() {
                     )}
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Regional Showcase Winners */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <Trophy className="w-7 h-7 text-[#E53935]" />
-                <h2 className="text-[#1A237E]">{winners.title}</h2>
-              </div>
-              <p className="text-[#1A237E]/70 text-lg max-w-2xl">{winners.description}</p>
-            </div>
-            {winnerYears.length > 0 && (
-              <div className="flex flex-wrap gap-2" aria-label="Filter winners by year">
-                {['All Years', ...winnerYears].map((year) => (
-                  <button
-                    key={year}
-                    type="button"
-                    onClick={() => setSelectedWinnerYear(year)}
-                    className={selectedWinnerYear === year
-                      ? 'px-4 py-2 bg-[#E53935] text-white rounded-full text-sm font-medium hover:bg-[#D32F2F] transition-colors'
-                      : 'px-4 py-2 bg-[#F5F3EE] text-[#1A237E] rounded-full text-sm font-medium hover:bg-[#E0DED8] transition-colors'}
-                  >
-                    {year}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {visibleWinners.length === 0 ? (
-            <div className="bg-[#F5F3EE] border border-[#1A237E]/10 rounded-xl p-8 text-center text-[#1A237E]/70">
-              {winners.emptyMessage}
-            </div>
-          ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {visibleWinners.map((winner) => (
-                <a
-                  key={`${winner.year}-${winner.fileName}`}
-                  href={winner.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-[#F5F3EE] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-white">
-                    <img
-                      src={winner.src}
-                      alt={winner.alt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm font-bold text-[#E53935]">{winner.year}</p>
-                    <h3 className="text-[#1A237E] mt-1">{winner.title}</h3>
-                  </div>
-                </a>
               ))}
             </div>
           )}
