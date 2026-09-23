@@ -3,7 +3,8 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { contactContent } from '../data/contactContent';
 
 export function Contact() {
-  const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+  const formspreeEndpoint = (import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined)
+    || 'https://formspree.io/f/xreajoyw';
 
   // Form state management - don't edit this section
   const [formData, setFormData] = useState({
