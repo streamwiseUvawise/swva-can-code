@@ -30,22 +30,40 @@ For sponsorship updates:
 - Sponsorship packet filename: `src/data/sponsorContent.ts` → `packet.pdfFileName`
 - Sponsor logo and packet assets folder: `src/assets/sponsor logo/`
 
-<<<<<<< HEAD
 For Showcase updates:
 - Event photos: `src/assets/showcase/`
 - Student project images and exported poster PDFs: `src/assets/student-projects/`
 - Event photos appear only in the Showcase gallery.
 - Student project uploads appear only in the Student Projects section.
 - Student project cards and details: `src/data/showcaseContent.ts`
-=======
 
-## Push to main
- git add .
- git commit -m "log message"
- git push origin main
+For winner updates:
+- Winner photos: `src/assets/winners/<year>/`
+- Use descriptive lowercase filenames such as `high-school-first-place.jpg`.
+- Winner photos appear before student projects on the Showcase page.
 
- ## before getting out of the codespace 
+## Push to Main
 
- use this command
- gh codespace stop
->>>>>>> c6219a2caf991f3f0c6fb2648dc62a61fd1d9cde
+The production repository is `streamwiseUvawise/swva-can-code`. The workspace includes a `streamwise` remote for it.
+
+```bash
+git add .
+git commit -m "Describe the change"
+git push streamwise main
+```
+
+If the `streamwise` remote is missing, add it with:
+
+```bash
+git remote add streamwise https://github.com/streamwiseUvawise/swva-can-code.git
+```
+
+GitHub authentication must use an account with write access to `streamwiseUvawise/swva-can-code`.
+
+## Stop the Codespace
+
+Before leaving the Codespace, run:
+
+```bash
+gh codespace stop
+```
